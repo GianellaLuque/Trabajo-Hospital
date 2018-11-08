@@ -681,23 +681,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tecsup\\.nuget\\packages\\": {},
+    "C:\\Users\\CLEOSHIN\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\CodiGo-2018\\Back End\\Semana 4\\Dia 3\\ProyectoMedico\\Entities\\Entities.csproj",
+      "projectUniqueName": "D:\\Cursos libres\\Tecsup\\codiGO\\Back-End\\Tareas\\Trabajo-Hospital\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "E:\\CodiGo-2018\\Back End\\Semana 4\\Dia 3\\ProyectoMedico\\Entities\\Entities.csproj",
-      "packagesPath": "C:\\Users\\Tecsup\\.nuget\\packages\\",
-      "outputPath": "E:\\CodiGo-2018\\Back End\\Semana 4\\Dia 3\\ProyectoMedico\\Entities\\obj\\",
+      "projectPath": "D:\\Cursos libres\\Tecsup\\codiGO\\Back-End\\Tareas\\Trabajo-Hospital\\Entities\\Entities.csproj",
+      "packagesPath": "C:\\Users\\CLEOSHIN\\.nuget\\packages\\",
+      "outputPath": "D:\\Cursos libres\\Tecsup\\codiGO\\Back-End\\Tareas\\Trabajo-Hospital\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tecsup\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\CLEOSHIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

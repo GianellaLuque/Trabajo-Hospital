@@ -4,15 +4,14 @@ using System.Text;
 
 namespace Entities
 {
-    public class Paciente
+    public class Paciente:Persona
     {
-        public string Dni { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public Paciente(string dni, string nombre, string apellido) {
-            this.Dni = dni;
-            this.Nombre = nombre;
-            this.Apellido = apellido;
+        public DateTime fNacimiento { get; set; }
+        public enumTipo Tipo { get; set; }
+        public Paciente(string Dni, string nombre, string apellido, DateTime nacimiento, enumTipo tipos)
+        :base(Dni, nombre, apellido){
+            this.fNacimiento = nacimiento;
+            this.Tipo = enumTipo.Asegurado;
         }
     }
 }

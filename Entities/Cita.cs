@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Entities
 {
-    class Cita
+    class Cita:Paciente
     {
+
     }
 }
