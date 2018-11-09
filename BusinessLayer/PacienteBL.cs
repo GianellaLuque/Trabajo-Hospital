@@ -14,13 +14,16 @@ namespace BusinessLayer
         {
             string path = PacientesDAL.ConexionPacientes();
             string[] lines = System.IO.File.ReadAllLines($"{path}\\BD\\Pacientes.txt");
+            DateTime fnacimiento = DateTime.Now;
+            enumTipo tipoSeguro = enumTipo.Asegurado;
             ListPacientes = new List<Paciente>();
+            //Paciente paciente = new Paciente();
             foreach (var item in lines)
             {
                 string Dni = item.Split(',')[0];
                 string nombre = item.Split(',')[1];
                 string Apellido = item.Split(',')[2];
-                Paciente p = new Paciente(Dni, nombre, Apellido);
+                Paciente p = new Paciente(Dni, nombre, Apellido, fnacimiento, tipoSeguro);
                 ListPacientes.Add(p);
             }
             return ListPacientes;
