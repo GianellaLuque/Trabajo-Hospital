@@ -1,4 +1,4 @@
-﻿public enum enumTipo
+﻿public enum enumTipoPaciente
 {
     Asegurado,
     Particular

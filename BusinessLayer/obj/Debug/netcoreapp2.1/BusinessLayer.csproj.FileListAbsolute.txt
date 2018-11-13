@@ -12,3 +12,17 @@ E:\CodiGo-2018\Back End\Semana 4\Dia 3\ProyectoMedico\BusinessLayer\bin\Debug\ne
 E:\CodiGo-2018\Back End\Semana 4\Dia 3\ProyectoMedico\BusinessLayer\bin\Debug\netcoreapp2.1\Entities.pdb
 E:\CodiGo-2018\Back End\Semana 4\Dia 3\ProyectoMedico\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.csprojAssemblyReference.cache
 E:\CodiGo-2018\Back End\Semana 4\Dia 3\ProyectoMedico\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.csproj.CopyComplete
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\bin\Debug\netcoreapp2.1\BusinessLayer.deps.json
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\bin\Debug\netcoreapp2.1\BusinessLayer.dll
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\bin\Debug\netcoreapp2.1\BusinessLayer.pdb
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\bin\Debug\netcoreapp2.1\DataAccess.dll
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\bin\Debug\netcoreapp2.1\Entities.dll
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\bin\Debug\netcoreapp2.1\DataAccess.pdb
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\bin\Debug\netcoreapp2.1\Entities.pdb
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.csprojAssemblyReference.cache
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.csproj.CoreCompileInputs.cache
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.AssemblyInfoInputs.cache
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.AssemblyInfo.cs
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.csproj.CopyComplete
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.dll
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.pdb

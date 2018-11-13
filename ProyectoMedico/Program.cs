@@ -10,10 +10,13 @@ namespace ProyectoMedico
         {
             PacienteBL pacienteBL = new PacienteBL();
             var Paciente = pacienteBL.GetPacientes();
-            foreach (var item in Paciente)
-            {
-                Console.WriteLine($"{item.Dni},{item.Nombre},{item.Apellido}");
-            }
+            string menu = @"SISTEMA HOSPITALARIO:
+1.  Generar paciente.
+2.  Administrar pacientes.
+3.  Administrar personal medico.
+4.  Otros.
+";
+            Console.WriteLine(menu);
         }
     }
 }

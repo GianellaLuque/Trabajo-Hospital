@@ -9,13 +9,13 @@ namespace BusinessLayer
 {
     public class PacienteBL
     {
-        public static List<Paciente> ListPacientes;
+        public List<Paciente> ListPacientes;
         public List<Paciente> GetPacientes()
         {
             string path = PacientesDAL.ConexionPacientes();
             string[] lines = System.IO.File.ReadAllLines($"{path}\\BD\\Pacientes.txt");
             DateTime fnacimiento = DateTime.Now;
-            enumTipo tipoSeguro = enumTipo.Asegurado;
+            enumTipoPaciente tipoSeguro = enumTipoPaciente.Asegurado;
             ListPacientes = new List<Paciente>();
             //Paciente paciente = new Paciente();
             foreach (var item in lines)

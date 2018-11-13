@@ -12,8 +12,8 @@ namespace Entities
         public Persona(string Dni, string nombre, string apellido)
         {
             this.Dni = Dni;
-            this.Nombre = nombre;
-            this.Apellido = apellido;
+            Nombre = nombre;
+            Apellido = apellido;
         }
     }
 }
