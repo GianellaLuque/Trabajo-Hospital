@@ -11,6 +11,17 @@ namespace BusinessLayer
     public class PacienteBL
     {
         public static List<Paciente> ListPacientes;
+        public static List<HistoriaClinica> HistClinica;
+
+        // METODO PARA OBTENER HISTORIA CLINICA
+        public List<HistoriaClinica> getHistoria()
+        {
+            HistClinica = new List<HistoriaClinica>();
+            HistClinica = null;
+            return HistClinica;
+        }
+
+        // METODO PARA OBTENER PACIENTES
         public List<Paciente> GetPacientes()
         {
             string path = PacientesDAL.ConexionPacientes();
@@ -18,33 +29,45 @@ namespace BusinessLayer
             DateTime FNacimiento = DateTime.Now;
             enumTipoPaciente TipoSeguro = enumTipoPaciente.Asegurado;
             ListPacientes = new List<Paciente>();
+            
+
             //Paciente paciente = new Paciente();
             foreach (var item in lines)
             {
-                string Dni = item.Split(',')[0];
-                string Nombre = item.Split(',')[1];
-                string Apellido = item.Split(',')[2];
+                string Dni = item.Split('%')[0];
+                string Nombre = item.Split('%')[1];
+                string Apellido = item.Split('%')[2];
                 Paciente p = new Paciente(Dni, Nombre, Apellido, FNacimiento, TipoSeguro);
                 ListPacientes.Add(p);
             }
             return ListPacientes;
         }
 
-        public static string BuscarPaciente(string dni, PacienteBL pacientes)
+        // METODO PARA ENCONTRAR PACIENTES
+        public Paciente BuscarPaciente(string dni)
         {
-
-            return dni;
+            Paciente p = null;
+            foreach (Paciente item in ListPacientes)
+            {
+                if (item.Dni == dni)
+                {
+                    p = item;
+                    break;
+                }
+            }
+            return p;
         }
 
-        public static void ActualizarPaciente(string dni, PacienteBL ListaPacientes)
+        // METODO PARA EDITAR PACIENTES
+        public static void ActualizarPaciente(string dni, Paciente paciente)
         {
             bool flag = false;
             foreach (Paciente item in ListPacientes)
             {
                 if (item.Dni == dni)
                 {
-                    item.Nombre = ListPacientes.Nombre;
-                    item.Apellido = ListPacientes.Apellido;
+                    item.Nombre = paciente.Nombre;
+                    item.Apellido = paciente.Apellido;
                     flag = true;
                     if (flag) { UpdateDataBase(); break; }
                 }

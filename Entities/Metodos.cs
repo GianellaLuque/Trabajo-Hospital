@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Entities
 {
-    public static class Metodos
-    {
-        public static string BuscarPaciente(string dni, PacienteBL)
-        {
-
-            return dni;
-        }
-    }
+    //public static class Metodos
+    //{
+    //    public bool Salir()
+    //    {
+    //        int salir = 
+    //        return 
+    //    }
+    //}
 }
