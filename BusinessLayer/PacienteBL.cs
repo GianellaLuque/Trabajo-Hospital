@@ -11,15 +11,10 @@ namespace BusinessLayer
     public class PacienteBL
     {
         public static List<Paciente> ListPacientes;
-        public static List<HistoriaClinica> HistClinica;
+        
 
         // METODO PARA OBTENER HISTORIA CLINICA
-        public List<HistoriaClinica> getHistoria()
-        {
-            HistClinica = new List<HistoriaClinica>();
-            HistClinica = null;
-            return HistClinica;
-        }
+        
 
         // METODO PARA OBTENER PACIENTES
         public List<Paciente> GetPacientes()

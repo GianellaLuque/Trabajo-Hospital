@@ -8,16 +8,30 @@ namespace Entities
     {
         public DateTime fNacimiento { get; set; }
         public enumTipoPaciente Tipo { get; set; }
-        public HistoriaClinica HistoriaClinica;
+
+        public static HistoriaClinica HistClinica;
+
+
+        // CONSTRUCTOR
         public Paciente(string Dni, string nombre, string apellido, DateTime nacimiento, enumTipoPaciente tipos)
         :base(Dni, nombre, apellido){
             this.fNacimiento = nacimiento;
             this.Tipo = enumTipoPaciente.Asegurado;
-            HistoriaClinica = new HistoriaClinica();
+            HistClinica = null;
         }
-        public void addHistoriaClinica()
+        public HistoriaClinica getHistoria()
         {
-
+            //HistClinica = new List<HistoriaClinica>();
+            //HistClinica = null;
+            return HistClinica;
         }
+
+        public void AsignarHistoria(HistoriaClinica nuevaHistoria)
+        {
+            HistClinica = new HistoriaClinica();
+            HistClinica = nuevaHistoria;  
+        }
+
+
     }
 }

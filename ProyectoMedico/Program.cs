@@ -30,14 +30,28 @@ namespace ProyectoMedico
                     {
                         Console.WriteLine($"Se encontro a: {paciente.Nombre} {paciente.Apellido}");
                         Console.WriteLine("Verificando si tiene historia clinica");
-                        if(Pacientes.getHistoria() != null)
+                        if(paciente.getHistoria() != null)
                         {
                             Console.WriteLine("Tiene historia");
                         }
                         else
                         {
                             Console.WriteLine("No tiene historia");
-
+                            Console.WriteLine("Agregando historia clinica");
+                            HistoriaClinica historia = new HistoriaClinica("001",DateTime.Now,45,"1.85",dni);
+                            paciente.AsignarHistoria(historia);
+                            if (paciente.getHistoria() != null)
+                            {
+                                Console.WriteLine("Tiene historia");
+                                var h = paciente.getHistoria();
+                                
+                                Console.WriteLine($"{h.COD_Especialidad}\n{h.FechaApertura}\n{h.Peso}\n{h.Talla}\n{h.Dni}");
+                                
+                            }
+                            else
+                            {
+                                Console.WriteLine("No tiene historia");
+                            }
                         }
                     }
                     else
