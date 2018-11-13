@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Entities
 {
-    class Metodos
+    public static class Metodos
     {
-        public bool BuscarPaciente(int dni)
+        public static string BuscarPaciente(string dni, PacienteBL)
         {
 
-            return true;
+            return dni;
         }
     }
 }
