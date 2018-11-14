@@ -9,6 +9,9 @@ namespace Entities
         public string Dni { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
+
+        // CONSTRUCTORES
+        public Persona() { }
         public Persona(string Dni, string Nombre, string Apellido)
         {
             this.Dni = Dni;

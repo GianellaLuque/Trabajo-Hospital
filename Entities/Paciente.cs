@@ -9,10 +9,11 @@ namespace Entities
         public DateTime fNacimiento { get; set; }
         public enumTipoPaciente Tipo { get; set; }
 
-        public static HistoriaClinica HistClinica;
+        public HistoriaClinica HistClinica;
 
 
         // CONSTRUCTOR
+        public Paciente() { }
         public Paciente(string Dni, string nombre, string apellido, DateTime nacimiento, enumTipoPaciente tipos)
         :base(Dni, nombre, apellido){
             this.fNacimiento = nacimiento;
