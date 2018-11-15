@@ -12,6 +12,7 @@ namespace Entities
 
         // CONSTRUCTORES
         public Persona() { }
+
         public Persona(string Dni, string Nombre, string Apellido)
         {
             this.Dni = Dni;

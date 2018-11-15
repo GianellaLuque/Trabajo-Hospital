@@ -16,3 +16,15 @@ D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\Entities\obj\Deb
 D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\Entities\obj\Debug\netcoreapp2.1\Entities.AssemblyInfo.cs
 D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\Entities\obj\Debug\netcoreapp2.1\Entities.dll
 D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\Entities\obj\Debug\netcoreapp2.1\Entities.pdb
+D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\Entities\obj\Debug\netcoreapp2.1\Entities.csprojAssemblyReference.cache
+D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\Entities\obj\Debug\netcoreapp2.1\Entities.csproj.CoreCompileInputs.cache
+D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\Entities\obj\Debug\netcoreapp2.1\Entities.AssemblyInfoInputs.cache
+D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\Entities\obj\Debug\netcoreapp2.1\Entities.AssemblyInfo.cs
+D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\Entities\obj\Debug\netcoreapp2.1\Entities.dll
+D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\Entities\obj\Debug\netcoreapp2.1\Entities.pdb
+D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\Entities\bin\Debug\netcoreapp2.1\Entities.deps.json
+D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\Entities\bin\Debug\netcoreapp2.1\Entities.dll
+D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\Entities\bin\Debug\netcoreapp2.1\Entities.pdb
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\Entities\bin\Debug\netcoreapp2.1\DataAccess.dll
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\Entities\bin\Debug\netcoreapp2.1\DataAccess.pdb
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\Entities\obj\Debug\netcoreapp2.1\Entities.csproj.CopyComplete

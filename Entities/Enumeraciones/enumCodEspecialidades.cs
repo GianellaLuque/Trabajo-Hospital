@@ -1,7 +1,5 @@
 ﻿public enum enumCodEspecialidades
 {
-    dssads,
-    fdsfdf,
-    dsfsdfds,
-    fsdds
+    General = 153135,
+    Pediatria = 315151
 }

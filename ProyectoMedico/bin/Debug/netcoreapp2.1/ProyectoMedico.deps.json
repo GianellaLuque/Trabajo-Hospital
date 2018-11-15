@@ -31,6 +31,9 @@
         }
       },
       "Entities/1.0.0": {
+        "dependencies": {
+          "DataAccess": "1.0.0"
+        },
         "runtime": {
           "Entities.dll": {}
         }

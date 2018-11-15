@@ -8,6 +8,7 @@ namespace Entities
     {
         public string CMP { get; set; }
         public enumEspecialidades Especialidad { get; set; }
+
         public Medico(string Dni, string nombre, string apellido, string cmp, enumEspecialidades espec)
         :base(Dni, nombre, apellido){
             CMP = cmp;
@@ -15,3 +16,4 @@ namespace Entities
         }
     }
 }
+
