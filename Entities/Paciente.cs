@@ -6,54 +6,28 @@ namespace Entities
 {
     public class Paciente:Persona
     {
-        public DateTime fNacimiento { get; set; }
-        public enumTipoPaciente Tipo { get; set; }
-        public HistoriaClinica HistClinica;
+        public string fNacimiento { get; set; }
+        public string Tipo { get; set; }
+        //public string HistClinica;
 
         // CONSTRUCTOR
-        public Paciente() { }
-        public Paciente(string Dni, string nombre, string apellido, DateTime nacimiento, enumTipoPaciente tipos)
+        public Paciente()
+        {
+            //this.Tipo = enumTipoPaciente.Asegurado;
+            //HistClinica = new HistoriaClinica();
+        }
+        public Paciente(string Dni, string nombre, string apellido, string nacimiento, string tipos)
         :base(Dni, nombre, apellido){
             this.fNacimiento = nacimiento;
-            this.Tipo = enumTipoPaciente.Asegurado;
-            HistClinica = null;
+            //this.Tipo = enumTipoPaciente.Asegurado;
+            Tipo = tipos;
+            //HistClinica = new HistoriaClinica();
         }
-        
 
-        //public bool VerificarHistoriaClinica()
-        //{
-        //    //Console.WriteLine($"Verificando historia clinica de: {nombre} {paciente.Apellido}");
-        //    //Console.WriteLine("Verificando si tiene historia clinica");
-        //    if (getHistoria() != null)
-        //    {
-        //        //Console.Clear();
-
-        //        return true;
-        //    }
-        //    else
-        //    {
-
-        //        return false;
-        //    }
-
-        //}
-
-        //public void GenerarHistoriaClinica()
-        //{
-        //    Console.WriteLine("Se genera historia con los siguientes datos:");
-        //    var Codespecialidad = enumCodEspecialidades.dsfsdfds;
-        //    DateTime fechaAdmision = DateTime.Now;
-        //    int peso = new Random().Next(80);
-        //    string talla = (new Random().NextDouble() * 10).ToString();
-        //    Console.WriteLine($"Especialidad:\t{Codespecialidad}");
-        //    Console.WriteLine($"Fecha de admision:\t{fechaAdmision}");
-        //    Console.WriteLine($"Peso:\t{peso}");
-        //    Console.WriteLine($"Talla:\t{talla}");
-        //    Console.WriteLine($"Dni:\t{Dni}");
-        //    HistoriaClinica historia = new HistoriaClinica(Codespecialidad, fechaAdmision, peso, talla, paciente.Dni);
-        //    AsignarHistoria(historia);
-        //}
-
-
+        // METODOS
+        public override string ToString()
+        {
+            return string.Format("DNI = {0} ,NOMBRE = {1}, APELLIDO = {2}, FNACIMIENTO = {3}, TIPO SEGURO = {4}", Dni, Nombre, Apellido, fNacimiento, Tipo);
+        }
     }
 }
