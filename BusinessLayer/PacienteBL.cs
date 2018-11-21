@@ -43,6 +43,28 @@ namespace BusinessLayer
             return ListPacientes;
         }
 
+        public async Task<Paciente> BuscarPaciente(string dni)
+        {
+            PacientesDAL dal = new PacientesDAL();
+            Paciente p = new Paciente();
+            ListPacientes = await dal.GetPacientesAsync();
+            bool flag = false;
+            foreach (var item in ListPacientes)
+            {
+                if (item.Dni == dni)
+                {
+                    flag = true;
+                    p = item;
+                    break;
+                }
+            }
+            if (flag)
+                return p;
+            else
+                p = null;
+            return p;
+        }
+
         public async Task<int> InsertarPacienteAsync(Paciente paciente)
         {
             PacientesDAL dal = new PacientesDAL();

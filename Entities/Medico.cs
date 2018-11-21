@@ -14,6 +14,10 @@ namespace Entities
             CMP = cmp;
             Especialidad = espec;
         }
+        public Medico()
+        {
+
+        }
     }
 }
 

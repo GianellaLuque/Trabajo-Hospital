@@ -8,20 +8,20 @@ using System.Linq;
 
 namespace DataAccess
 {
-    public class HistoriaClinicaDAL:Conexion
+    public class EspecialidadDAL:Conexion
     {
-        public async Task<List<HistoriaClinica>> GetHistoriaClinicaAsync()
+        public async Task<List<Especialidad>> GetEspecialidades()
         {
             MySqlConnection MiConexion = AbrirConexionSql();
-            string sql = "select * from historiasclinicas";
+            string sql = "select * from especialidades";
             try
             {
-                List<HistoriaClinica> ListaHistoriasClinicas = null;
-                if(MiConexion != null)
+                List<Especialidad> ListaEspecialidades = null;
+                if (MiConexion != null)
                 {
-                    ListaHistoriasClinicas = (await MiConexion.QueryAsync<HistoriaClinica>(sql)).ToList();
+                    ListaEspecialidades = (await MiConexion.QueryAsync<Especialidad>(sql)).ToList();
                 }
-                return ListaHistoriasClinicas;
+                return ListaEspecialidades;
             }
             catch
             {
@@ -29,23 +29,23 @@ namespace DataAccess
             }
             finally
             {
-                if(MiConexion.State == System.Data.ConnectionState.Open)
+                if (MiConexion.State == System.Data.ConnectionState.Open)
                 {
                     MiConexion.Close();
                 }
             }
         }
 
-        public async Task<int> InsertarHistoriaClinicaAsync(HistoriaClinica historia)
+        public async Task<int> InsertarEspecialidadAsync (Especialidad especialidad)
         {
             MySqlConnection conexion = AbrirConexionSql();
-            string sql = "INSERT into historiasclinicas (CodEspecialidad, FechaApertura, Peso, Talla, Dni) values (@CodEspecialidad, @FechaApertura, @Peso, @Talla, @Dni)";
+            string sql = "INSERT into especialidades (CodEspecialidad, IdEspecialidad) values (@CodEspecialidad, @IdEspecialidad)";
             int FilasAfectadas = 0;
             try
             {
                 if (conexion != null)
                 {
-                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { CodEspecialidad = historia.CodEspecialidad, FechaApertura = historia.FechaApertura, Peso = historia.Peso, Talla = historia.Talla, Dni = historia.Dni});
+                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { CodEspecialidad = especialidad.CodEspecialidad, IdEspecialidad = especialidad.IdEspecialidad });
                 }
                 return FilasAfectadas;
             }
@@ -59,10 +59,10 @@ namespace DataAccess
             }
         }
 
-        public async Task<int> UpdateHistoriaClinicaAsync(HistoriaClinica historia, int dni)
+        public async Task<int> UpdateEspecialidadAsync (Especialidad especialidad)
         {
             MySqlConnection conexion = AbrirConexionSql();
-            string sql = "UPDATE historiasclinicas SET  'CodEspecialidad' = @CodEspecialidad, 'FechaApertura' = @FechaApertura, 'Peso' = @Peso, 'Talla' = @Talla, Dni = @Dni WHERE Dni = @Dni";
+            string sql = "UPDATE especialidades SET  'CodEspecialidad' = @CodEspecialidad, 'IdEspecialidad' = @IdEspecialidad WHERE IdEspecialidad = @IdEspecialidad";
             //string sql = "UPDATE talumnos SET  Nombre = @Nombre, Apellido = @Apellido, Dni = @Dni, Email = @Email WHERE idAlumno = @idAlumno";
             int NroFilasAfectadas = 0;
             try
@@ -71,12 +71,8 @@ namespace DataAccess
                 {
                     NroFilasAfectadas = await conexion.ExecuteAsync(sql, new
                     {
-                        CodEspecialidad = historia.CodEspecialidad,
-                        FechaApertura = historia.FechaApertura,
-                        Peso = historia.Peso,
-                        Talla = historia.Talla,
-                        //Dni = historia.Dni
-                        Dni = dni
+                        CodEspecialidad = especialidad.CodEspecialidad,
+                        IdEspecialidad = especialidad.IdEspecialidad
                     });
                 };
                 return NroFilasAfectadas;
@@ -91,7 +87,5 @@ namespace DataAccess
                     conexion.Close();
             }
         }
-
-        
     }
 }

@@ -207,16 +207,6 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
-      },
-      "DataAccess/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.1",
-        "compile": {
-          "bin/placeholder/DataAccess.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccess.dll": {}
-        }
       }
     }
   },
@@ -683,16 +673,10 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
-    },
-    "DataAccess/1.0.0": {
-      "type": "project",
-      "path": "../DataAccess/DataAccess.csproj",
-      "msbuildProject": "../DataAccess/DataAccess.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "DataAccess >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
   },
@@ -725,11 +709,7 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {
-            "D:\\Cursos libres\\Tecsup\\codiGO\\Back-End\\Tareas\\Trabajo-Hospital\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "D:\\Cursos libres\\Tecsup\\codiGO\\Back-End\\Tareas\\Trabajo-Hospital\\DataAccess\\DataAccess.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

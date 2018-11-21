@@ -25,3 +25,6 @@ D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-maste
 D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.AssemblyInfo.cs
 D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.dll
 D:\Cursos libres\Tecsup\codiGO\Back-End\Back-End\Back-End\Trabajo-Hospital-master\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.pdb
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\DataAccess\bin\Debug\netcoreapp2.1\Entities.dll
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\DataAccess\bin\Debug\netcoreapp2.1\Entities.pdb
+D:\Cursos libres\Tecsup\codiGO\Back-End\Tareas\Trabajo-Hospital\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.csproj.CopyComplete
