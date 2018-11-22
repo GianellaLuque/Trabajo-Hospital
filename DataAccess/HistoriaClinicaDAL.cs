@@ -59,7 +59,7 @@ namespace DataAccess
             }
         }
 
-        public async Task<int> UpdateHistoriaClinicaAsync(HistoriaClinica historia, int dni)
+        public async Task<int> UpdateHistoriaClinicaAsync(HistoriaClinica historia, string dni)
         {
             MySqlConnection conexion = AbrirConexionSql();
             string sql = "UPDATE historiasclinicas SET  'CodEspecialidad' = @CodEspecialidad, 'FechaApertura' = @FechaApertura, 'Peso' = @Peso, 'Talla' = @Talla, Dni = @Dni WHERE Dni = @Dni";

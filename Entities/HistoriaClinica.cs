@@ -28,7 +28,7 @@ namespace Entities
 
         public override string ToString()
         {
-            return string.Format("CodEspecialidad = {0} ,Fecha Apertura = {1}, Peso = {2}, Talla = {3}, Dni = {4}", CodEspecialidad, FechaApertura, Peso, Talla, Dni);
+            return string.Format("CodEspecialidad = {0}, Fecha Apertura = {1}, Peso = {2}, Talla = {3}, Dni = {4}", CodEspecialidad, FechaApertura, Peso, Talla, Dni);
         }
     }
 

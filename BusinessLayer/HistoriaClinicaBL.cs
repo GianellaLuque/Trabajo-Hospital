@@ -20,7 +20,7 @@ namespace BusinessLayer
         public async Task<HistoriaClinica> BuscarHistoriaClinicaAsync(string dni)
         {
             HistoriaClinicaDAL dal = new HistoriaClinicaDAL();
-            HistoriaClinica h = new HistoriaClinica();
+            var historia = new HistoriaClinica();
             ListHistoriaClinica = await dal.GetHistoriaClinicaAsync();
             bool flag = false;
             foreach (var item in ListHistoriaClinica)
@@ -28,15 +28,15 @@ namespace BusinessLayer
                 if (item.Dni == dni)
                 {
                     flag = true;
-                    h = item;
+                    historia = item;
                     break;
                 }
             }
             if (flag)
-                return h;
+                return historia;
             else
-                h = null;
-                return h;
+                historia = null;
+                return historia;
         }
 
         public async Task<int> InsertarHistoriaClinicaAsync(HistoriaClinica historia)
@@ -45,7 +45,7 @@ namespace BusinessLayer
             return await dal.InsertarHistoriaClinicaAsync(historia);
         }
 
-        public async Task<int> UpdateHistoriaClinicaAsync(HistoriaClinica historia, int dni)
+        public async Task<int> UpdateHistoriaClinicaAsync(HistoriaClinica historia, string dni)
         {
             HistoriaClinicaDAL dal = new HistoriaClinicaDAL();
             return await dal.UpdateHistoriaClinicaAsync(historia, dni);

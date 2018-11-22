@@ -11,9 +11,19 @@ namespace BusinessLayer
         public static List<Medico> ListaMedicos;
         public async Task<List<Medico>> GetMedicosAsync()
         {
-            MedicoBL dal = new MedicoBL();
+            MedicoDAL dal = new MedicoDAL();
             ListaMedicos = await dal.GetMedicosAsync();
             return ListaMedicos;
+        }
+        public async Task<int> InsertMedicoAsync(Medico medico)
+        {
+            MedicoDAL dal = new MedicoDAL();
+            return await dal.InsertarMedicoAsync(medico);
+        }
+        public async Task<int> UpdateMedicoAsync(Medico medico)
+        {
+            MedicoDAL dal = new MedicoDAL();
+            return await dal.UpdateMedicoAsyn(medico);
         }
     }
 }

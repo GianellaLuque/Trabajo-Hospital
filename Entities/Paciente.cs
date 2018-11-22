@@ -27,7 +27,7 @@ namespace Entities
         // METODOS
         public override string ToString()
         {
-            return string.Format("DNI = {0} ,NOMBRE = {1}, APELLIDO = {2}, FNACIMIENTO = {3}, TIPO SEGURO = {4}", Dni, Nombre, Apellido, fNacimiento, Tipo);
+            return string.Format("DNI = {0}, NOMBRE = {1}, APELLIDO = {2}, FNACIMIENTO = {3}, TIPO SEGURO = {4}", Dni, Nombre, Apellido, fNacimiento, Tipo);
         }
     }
 }

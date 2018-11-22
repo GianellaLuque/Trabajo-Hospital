@@ -59,10 +59,10 @@ namespace DataAccess
             }
         }
 
-        public async Task<int> UpdateEspecialidadAsync (Especialidad especialidad)
+        public async Task<int> UpdateEspecialidadAsync (Especialidad newEspecialidad)
         {
             MySqlConnection conexion = AbrirConexionSql();
-            string sql = "UPDATE especialidades SET  'CodEspecialidad' = @CodEspecialidad, 'IdEspecialidad' = @IdEspecialidad WHERE IdEspecialidad = @IdEspecialidad";
+            string sql = "UPDATE especialidades SET  CodEspecialidad = @CodEspecialidad, IdEspecialidad = @IdEspecialidad WHERE CodEspecialidad = @CodEspecialidad";
             //string sql = "UPDATE talumnos SET  Nombre = @Nombre, Apellido = @Apellido, Dni = @Dni, Email = @Email WHERE idAlumno = @idAlumno";
             int NroFilasAfectadas = 0;
             try
@@ -71,8 +71,8 @@ namespace DataAccess
                 {
                     NroFilasAfectadas = await conexion.ExecuteAsync(sql, new
                     {
-                        CodEspecialidad = especialidad.CodEspecialidad,
-                        IdEspecialidad = especialidad.IdEspecialidad
+                        CodEspecialidad = newEspecialidad.CodEspecialidad,
+                        IdEspecialidad = newEspecialidad.IdEspecialidad
                     });
                 };
                 return NroFilasAfectadas;
@@ -85,6 +85,33 @@ namespace DataAccess
             {
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
+            }
+        }
+
+        public async Task<int> DeleteEspecialidadAsync(string CodEspecialidad)
+        {
+            MySqlConnection MiConexion = new MySqlConnection();
+            string sql = "DELETE FROM especialidades WHERE CodEspecialidad = @CodEspecialidad";
+            int FilasAfectadas = 0;
+            try
+            {
+                if(MiConexion != null)
+                {
+                    FilasAfectadas = await MiConexion.ExecuteAsync(sql, new { CodEspecialidad = CodEspecialidad});
+                }
+                return FilasAfectadas;
+                
+            }
+            catch
+            {
+                return FilasAfectadas;
+            }
+            finally
+            {
+                if(MiConexion.State == System.Data.ConnectionState.Open)
+                {
+                    MiConexion.Close();
+                }
             }
         }
     }
