@@ -24,6 +24,12 @@ namespace BusinessLayer
             return await dal.GenerarCitaAsync(cita);
 
         }
+
+        public async Task<int> EliminarCitaAsync(string IdCita)
+        {
+            var dal = new CitaDAL();
+            return await dal.EliminarCitaAsync(IdCita);
+        }
         public async Task<Cita> BuscarCita(string dni)
         {
             CitaDAL dal = new CitaDAL();

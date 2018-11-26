@@ -58,7 +58,6 @@ namespace DataAccess
                 if (conexion.State == System.Data.ConnectionState.Open) { conexion.Close(); }
             }
         }
-
         public async Task<int> UpdateHistoriaClinicaAsync(HistoriaClinica historia, string dni)
         {
             MySqlConnection conexion = AbrirConexionSql();
@@ -91,7 +90,32 @@ namespace DataAccess
                     conexion.Close();
             }
         }
+        public async Task<int> EliminarHistoriaClinicaAsync(string dni)
+        {
+            MySqlConnection MiConexion = AbrirConexionSql();
+            string sql = "delete from historiasclinicas where Dni = @dniPacienteAEliminar; ";
+            int NroFilasAfectadas = 0;
+            try
+            {
+                if (MiConexion != null)
+                {
+                    NroFilasAfectadas = await MiConexion.ExecuteAsync(sql, new { dniPacienteAEliminar = dni });
+                }
+                return NroFilasAfectadas;
+            }
+            catch
+            {
+                return NroFilasAfectadas;
+            }
+            finally
+            {
+                if (MiConexion.State == System.Data.ConnectionState.Open)
+                {
+                    MiConexion.Close();
+                }
+            }
+        }
 
-        
+
     }
 }

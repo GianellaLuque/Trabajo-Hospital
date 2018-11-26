@@ -15,7 +15,6 @@ namespace BusinessLayer
             ListaPacientes = await dal.GetPacientesAsync();
             return ListaPacientes;
         }
-
         public async Task<Paciente> BuscarPacienteAsync(string dni)
         {
             PacienteDAL dal = new PacienteDAL();
@@ -37,11 +36,25 @@ namespace BusinessLayer
                 paciente = null;
             return paciente;
         }
-
         public async Task<int> InsertarPacienteAsync(Paciente paciente)
         {
             PacienteDAL dal = new PacienteDAL();
             return await dal.InsertarPacienteAsync(paciente);
+        }
+        public async Task<int> ActualizarPacienteAsync(Paciente paciente)
+        {
+            var dal = new PacienteDAL();
+            return await dal.ActualizarPacienteAsync(paciente);
+        }
+        public async Task<int> EliminarPacientesTodo()
+        {
+            var dal = new PacienteDAL();
+            return await dal.EliminarPacientesTodo();
+        }
+        public async Task<int> EliminarPaciente(string dni)
+        {
+            var dal = new PacienteDAL();
+            return await dal.EliminarPaciente(dni);
         }
     }
 }

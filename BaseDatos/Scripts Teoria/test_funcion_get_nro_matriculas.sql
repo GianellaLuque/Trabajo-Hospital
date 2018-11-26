@@ -1,0 +1,1 @@
+select IdAlumno, Nombre, Apellido, Dni, Email, get_nro_matriculas(IdAlumno) from talumnos;

@@ -16,7 +16,6 @@ namespace BusinessLayer
             ListHistoriaClinica = await dal.GetHistoriaClinicaAsync();
             return ListHistoriaClinica;
         }
-
         public async Task<HistoriaClinica> BuscarHistoriaClinicaAsync(string dni)
         {
             HistoriaClinicaDAL dal = new HistoriaClinicaDAL();
@@ -38,19 +37,21 @@ namespace BusinessLayer
                 historia = null;
                 return historia;
         }
-
         public async Task<int> InsertarHistoriaClinicaAsync(HistoriaClinica historia)
         {
             HistoriaClinicaDAL dal = new HistoriaClinicaDAL();
             return await dal.InsertarHistoriaClinicaAsync(historia);
         }
-
         public async Task<int> UpdateHistoriaClinicaAsync(HistoriaClinica historia, string dni)
         {
             HistoriaClinicaDAL dal = new HistoriaClinicaDAL();
             return await dal.UpdateHistoriaClinicaAsync(historia, dni);
             //return alumno;
         }
-        
+        public async Task<int> EliminarHistoriaClinicaAsync(string dni)
+        {
+            var dal = new HistoriaClinicaDAL();
+            return await dal.EliminarHistoriaClinicaAsync(dni);
+        }
     }
 }

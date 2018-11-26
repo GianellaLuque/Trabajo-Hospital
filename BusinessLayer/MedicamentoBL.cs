@@ -51,5 +51,11 @@ namespace BusinessLayer
             return await dal.UpdateMedicamentoAsync(medicamento);
             //return alumno;
         }
+        public async Task<int> EliminarMedicamentoAsync(int CodMedicamento)
+        {
+            MedicamentoDAL dal = new MedicamentoDAL();
+            return await dal.EliminarMedicamentoAsync(CodMedicamento);
+            //return alumno;
+        }
     }
 }

@@ -24,17 +24,6 @@ namespace BusinessLayer
         public async Task<int> UpdateEspecialidadAsync(Especialidad newEspecialidad)
         {
             EspecialidadDAL dal = new EspecialidadDAL();
-            //ListaEspecialidades = await GetEspecialidadesAsync();
-            ////Especialidad especialidad = new Especialidad();
-            
-            //foreach (var item in ListaEspecialidades)
-            //{
-            //    if (item.CodEspecialidad == CodEspecialidad)
-            //    {
-            //        item = newEspecialidad;
-            //        break;
-            //    }
-            //}
             return await dal.UpdateEspecialidadAsync(newEspecialidad);
         }
 

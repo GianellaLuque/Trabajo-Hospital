@@ -34,7 +34,6 @@ namespace DataAccess
                 }
             }
         }
-
         public async Task<int> InsertarPacienteAsync(Paciente paciente)
         {
             MySqlConnection conexion = AbrirConexionSql();
@@ -55,6 +54,79 @@ namespace DataAccess
             finally
             {
                 if (conexion.State == System.Data.ConnectionState.Open) { conexion.Close(); }
+            }
+        }
+        public async Task<int> ActualizarPacienteAsync(Paciente paciente)
+        {
+            MySqlConnection MiConexion = AbrirConexionSql();
+            string sql = "update pacientes set Dni = @Dni, Nombre = @Nombre, Apellido = @Apellido, fNacimiento = @fNacimiento, Tipo = @Tipo where Dni = @Dni;";
+            //UPDATE especialidades SET CodEspecialidad = @CodEspecialidad, IdEspecialidad = @IdEspecialidad WHERE CodEspecialidad = @CodEspecialidad
+            int FilasAfectadas = 0;
+            try
+            {
+                if (MiConexion != null)
+                {
+                    FilasAfectadas = await MiConexion.ExecuteAsync(sql, new { Dni = paciente.Dni, Nombre = paciente.Nombre, Apellido = paciente.Apellido, fNacimiento = paciente.fNacimiento, Tipo = paciente.Tipo });
+                }
+                return FilasAfectadas;
+            }
+            catch
+            {
+                return FilasAfectadas;
+            }
+            finally
+            {
+                if (MiConexion.State == System.Data.ConnectionState.Open) { MiConexion.Close(); }
+            }
+        }
+        public async Task<int> EliminarPacientesTodo()
+        {
+            MySqlConnection MiConexion = AbrirConexionSql();
+            string sql = "TRUNCATE table pacientes;";
+            int NroFilasAfectadas = 0;
+            try
+            {
+                if(MiConexion != null)
+                {
+                    NroFilasAfectadas = await MiConexion.ExecuteAsync(sql);
+                }
+                return NroFilasAfectadas;
+            }
+            catch
+            {
+                return NroFilasAfectadas;
+            }
+            finally
+            {
+                if(MiConexion.State == System.Data.ConnectionState.Open)
+                {
+                    MiConexion.Close();
+                }
+            }
+        }
+        public async Task<int> EliminarPaciente(string dni)
+        {
+            MySqlConnection MiConexion = AbrirConexionSql();
+            string sql = "delete from pacientes where Dni = @dniPacienteAEliminar; ";
+            int NroFilasAfectadas = 0;
+            try
+            {
+                if (MiConexion != null)
+                {
+                    NroFilasAfectadas = await MiConexion.ExecuteAsync(sql, new { dniPacienteAEliminar = dni});
+                }
+                return NroFilasAfectadas;
+            }
+            catch
+            {
+                return NroFilasAfectadas;
+            }
+            finally
+            {
+                if (MiConexion.State == System.Data.ConnectionState.Open)
+                {
+                    MiConexion.Close();
+                }
             }
         }
     }

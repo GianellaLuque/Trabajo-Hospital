@@ -90,14 +90,14 @@ namespace DataAccess
 
         public async Task<int> DeleteEspecialidadAsync(string CodEspecialidad)
         {
-            MySqlConnection MiConexion = new MySqlConnection();
-            string sql = "DELETE FROM especialidades WHERE CodEspecialidad = @CodEspecialidad";
+            MySqlConnection MiConexion = AbrirConexionSql();
+            string sql = "delete from especialidades WHERE CodEspecialidad = @CodEspecialidadAEliminar;";
             int FilasAfectadas = 0;
             try
             {
                 if(MiConexion != null)
                 {
-                    FilasAfectadas = await MiConexion.ExecuteAsync(sql, new { CodEspecialidad = CodEspecialidad});
+                    FilasAfectadas = await MiConexion.ExecuteAsync(sql, new { CodEspecialidadAEliminar = CodEspecialidad});
                 }
                 return FilasAfectadas;
                 

@@ -89,5 +89,31 @@ namespace DataAccess
                     conexion.Close();
             }
         }
+        public async Task<int> EliminarMedicamentoAsync(int CodMedicamento)
+        {
+            MySqlConnection conexion = AbrirConexionSql();
+            string sql = "delete from medicamentos where CodMedicamento = @CodMedicamentoAEliminar;";
+            int NroFilasAfectadas = 0;
+            try
+            {
+                if (conexion != null)
+                {
+                    NroFilasAfectadas = await conexion.ExecuteAsync(sql, new
+                    {
+                        CodMedicamentoAEliminar = CodMedicamento
+                    });
+                };
+                return NroFilasAfectadas;
+            }
+            catch (Exception ex)
+            {
+                return NroFilasAfectadas;
+            }
+            finally
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+            }
+        }
     }
 }

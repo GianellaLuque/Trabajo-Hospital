@@ -6,9 +6,9 @@ namespace Entities
 {
     public class HistoriaClinica
     {
-        public int CodEspecialidad { get; set; }
+        public string CodEspecialidad { get; set; }
         public DateTime FechaApertura { get; set; }
-        public int Peso { get; set; }
+        public string Peso { get; set; }
         public string Talla { get; set; }
         public string Dni { get; set; }
 
@@ -17,7 +17,7 @@ namespace Entities
         {
 
         }
-        public HistoriaClinica(int codEspecialidad, DateTime fechaAp, int peso, string talla, string dni)
+        public HistoriaClinica(string codEspecialidad, DateTime fechaAp, string peso, string talla, string dni)
         {
             CodEspecialidad = codEspecialidad;
             FechaApertura = fechaAp;
