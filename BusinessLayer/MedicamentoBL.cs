@@ -38,13 +38,11 @@ namespace BusinessLayer
                 medicamento = null;
             return medicamento;
         }
-
         public async Task<int> InsertarMedicamentoAsync(Medicamento medicamento)
         {
             MedicamentoDAL dal = new MedicamentoDAL();
             return await dal.InsertarMedicamentoAsync(medicamento);
         }
-
         public async Task<int> UpdateMedicamentoAsync(Medicamento medicamento)
         {
             MedicamentoDAL dal = new MedicamentoDAL();

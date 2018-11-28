@@ -35,11 +35,10 @@ namespace DataAccess
                 }
             }
         }
-
         public async Task<int> InsertarMedicamentoAsync (Medicamento medicamento)
         {
             MySqlConnection conexion = AbrirConexionSql();
-            string sql = "INSERT into medicamentos (CodMedicamento, NombreProducto, Presentacion, Fracciones) values (@CodMedicamentos, @NombreProducto, @Presentacion, @Fracciones)";
+            string sql = "INSERT into medicamentos (CodMedicamento, NombreProducto, Presentacion, Fracciones) values (@CodMedicamento, @NombreProducto, @Presentacion, @Fracciones)";
             int FilasAfectadas = 0;
             try
             {
@@ -58,7 +57,6 @@ namespace DataAccess
                 if (conexion.State == System.Data.ConnectionState.Open) { conexion.Close(); }
             }
         }
-
         public async Task<int> UpdateMedicamentoAsync(Medicamento medicamento)
         {
             MySqlConnection conexion = AbrirConexionSql();

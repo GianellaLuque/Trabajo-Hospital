@@ -44,7 +44,9 @@ namespace Entities
             paciente.fNacimiento = Console.ReadLine();
             Console.WriteLine("Ingrese nuevo Tipo de seguro (Asegurado/Particular): ");
             paciente.Tipo = Console.ReadLine();
-            
+            //var historia = await BuscarHistoriaClinica(Dni);
+            //paciente.IdHistoria = historia.IdHistoria;
+
             await bl.ActualizarPacienteAsync(paciente);
             return "Actualizacion de paciente exitoso";
         }
@@ -68,6 +70,9 @@ namespace Entities
             paciente.fNacimiento = Console.ReadLine();
             Console.WriteLine("Ingrese Tipo (Interconsulta/Normal): ");
             paciente.Tipo = Console.ReadLine();
+            //var historia = await BuscarHistoriaClinica(Dni);
+            //paciente.IdHistoria = historia.IdHistoria;
+
             await bl.InsertarPacienteAsync(paciente);
             return "Paciente creado exitosamente";
         }
@@ -83,6 +88,8 @@ namespace Entities
             Console.WriteLine("Ingrese Fecha de nacimiento (YYYY/MM/DD): ");
             paciente.fNacimiento = Console.ReadLine();
             Console.WriteLine("Ingrese Tipo (Interconsulta/Normal): ");
+            //var historia = await BuscarHistoriaClinica(Dni);
+            //paciente.IdHistoria = historia.IdHistoria;
             paciente.Tipo = Console.ReadLine();
             return await bl.InsertarPacienteAsync(paciente);
         }
@@ -121,12 +128,6 @@ namespace Entities
         public static async Task<bool> ValidarPaciente(string Dni)
         {
             var pacientes = await GetPacientes();
-            //while (!validar(Dni))
-            //{
-            //    Console.WriteLine("Ingrese Dni de paciente valido");
-            //    Dni = Console.ReadLine();
-            //}
-            //return "Paciente encontrado";
             if (validar(Dni))
                 return true;
             else return false;
@@ -136,6 +137,244 @@ namespace Entities
                 foreach (var item in pacientes)
                 {
                     if (item.Dni == valor)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        // METODOS DE ADMINISTRACION DE HISTORIAS CLINICAS
+        public static async Task<List<HistoriaClinica>> GetHistoriasClinicas()
+        {
+            HistoriaClinicaBL bl = new HistoriaClinicaBL();
+            return await bl.GetHistoriaClinicaAsync();
+        }
+        public static async Task<HistoriaClinica> BuscarHistoriaClinica(string Dni)
+        {
+            
+            HistoriaClinicaBL bl = new HistoriaClinicaBL();
+            return await bl.BuscarHistoriaClinicaAsync(Dni);
+        }
+        public static async Task<string> UpdateHistoriaClinica()
+        {
+            Console.WriteLine("Ingrese Dni:");
+            string Dni = Console.ReadLine();
+            if (Dni.Length != 8)
+            {
+                return "Numerode digitos invalidos para Dni";
+            }
+            if (!await ValidarPaciente(Dni)) { return "Paciente no encontrado con ese Dni, asegurese de registrarlo primero"; }
+            var historia = new HistoriaClinica();
+            await MostrarEspecialidades();
+            Console.WriteLine("Ingrese CodEspecialidad: ");
+            historia.CodEspecialidad = Console.ReadLine();
+            //Console.WriteLine("Ingrese : ");
+            historia.FechaApertura = DateTime.Now;
+            Console.WriteLine("Ingrese Peso: ");
+            historia.Peso = Console.ReadLine();
+            Console.WriteLine("Ingrese Talla: ");
+            historia.Talla = Console.ReadLine();
+            //Console.WriteLine("Ingrese CodEspecialidad: ");
+            historia.CodEspecialidad = Dni;
+
+            HistoriaClinicaBL bl = new HistoriaClinicaBL();
+            await bl.UpdateHistoriaClinicaAsync(historia, Dni);
+            return "Historia actualizada con exito";
+        }
+        public static async Task<string> InsertarHistoriaClinica()
+        {
+            Console.WriteLine("Ingrese Dni:");
+            string Dni = Console.ReadLine();
+            if (Dni.Length != 8)
+            {
+                return "Numerode digitos invalidos para Dni";
+            }
+            if (!await ValidarPaciente(Dni)){  return "Paciente no encontrado con ese Dni, asegurese de registrarlo primero"; }
+            var historia = new HistoriaClinica();
+            var bl = new HistoriaClinicaBL();
+            Console.WriteLine("Paciente encontrado");
+            await MostrarEspecialidades();
+            Console.WriteLine("Ingrese CodEspecialidad");
+            historia.CodEspecialidad = Console.ReadLine();
+            //Console.WriteLine("Ingrese Fecha de apertura");
+            historia.FechaApertura = DateTime.Now;
+            Console.WriteLine("Ingrese Peso");
+            historia.Peso = Console.ReadLine();
+            Console.WriteLine("Ingrese Talla");
+            historia.Talla = Console.ReadLine();
+            //Console.WriteLine("Ingrese Dni");
+            historia.Dni = Dni;
+            await bl.InsertarHistoriaClinicaAsync(historia);
+            return "Historia creada";
+        }
+        public static async Task<string> EliminarHistoriaClinica()
+        {
+            Console.WriteLine("Ingrese Dni:");
+            string Dni = Console.ReadLine();
+            if (Dni.Length != 8)
+            {
+                return "Numero de digitos invalido";
+            }
+            if (!await ValidarPaciente(Dni)) { return "Paciente no encontrado con ese Dni, asegurese de registrarlo primero"; }
+            var bl = new HistoriaClinicaBL();
+            await bl.EliminarHistoriaClinicaAsync(Dni);
+            return "Historia clinica eliminada con exito";
+        }
+        public static async Task<int> InsertarHistoriaClinica(string Dni)
+        {
+            var historia = new HistoriaClinica();
+            var bl = new HistoriaClinicaBL();
+            await MostrarEspecialidades();
+            Console.WriteLine("Ingrese CodEspecialidad");
+            historia.CodEspecialidad = Console.ReadLine();
+            //Console.WriteLine("Ingrese Fecha de apertura");
+            historia.FechaApertura = DateTime.Now;
+            Console.WriteLine("Ingrese Peso");
+            historia.Peso = Console.ReadLine();
+            Console.WriteLine("Ingrese Talla");
+            historia.Talla = Console.ReadLine();
+            //Console.WriteLine("Ingrese Dni");
+            historia.Dni = Dni;
+            return await bl.InsertarHistoriaClinicaAsync(historia);
+        }
+        public static async Task<int> MostrarHistorias()
+        {
+            var historias = await GetHistoriasClinicas();
+            foreach (var item in historias)
+            {
+                Console.WriteLine(item);
+            }
+            return 1;
+        }
+        public static async Task<bool> ValidarHistoria(string Dni)
+        {
+            var historias = await GetHistoriasClinicas();
+            if (validar(Dni))
+                return true;
+            else return false;
+
+            bool validar(string valor)
+            {
+                foreach (var item in historias)
+                {
+                    if (item.Dni == valor)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        // METODOS DE ADMINISTRACION DE DIAGNOSTICOS
+        public static async Task<List<Diagnostico>> GetDiagnosticos()
+        {
+            var bl = new DiagnosticoBL();
+            return await bl.GetDiagnosticosAsync();
+        }
+        public static async Task<string> InsertarDiagnostico()
+        {
+            var bl = new DiagnosticoBL();
+            var diagnostico = new Diagnostico();
+            Console.WriteLine("Ingrese IdDiagnostico");
+            string IdDiagnostico = Console.ReadLine();
+            if (await ValidarDiagnostico(IdDiagnostico))
+            {
+                return "Este diagnostico ya existe, ingrese otro IdDiagnostico";
+            }
+            //if(!await )
+            diagnostico.IdDiagnostico = IdDiagnostico;
+
+            await MostrarMedicamentos();
+            Console.WriteLine("Ingrese CodMedicamento");
+            int CodMedicamento = int.Parse(Console.ReadLine());
+            if (!await ValidarCodMedicamento(CodMedicamento))
+            {
+                return "Este medicamento no esta registrado, ingrese otro CodMedicamento";
+            }
+            diagnostico.CodMedicamento = CodMedicamento.ToString();
+
+            await MostrarEnfermedades();
+            Console.WriteLine("Ingrese CodEnfermedad");
+            string CodEnfermedad = Console.ReadLine();
+            if (!await ValidarCodEnfermedad(CodEnfermedad))
+            {
+                return "Esta enfermedad no esta registrada, ingrese otro Codigo de Enfermedad";
+            }
+            diagnostico.CodEnfermedad = CodEnfermedad;
+
+            await bl.InsertarDiagnosticoAsync(diagnostico);
+            return "Diagnostico creado exitosamente";
+        }
+        public static async Task<string> UpdateDiagnostico()
+        {
+            var bl = new DiagnosticoBL();
+            var nuevoDiagnostico = new Diagnostico();
+            Console.WriteLine("Ingrese IdDiagnostico");
+            string IdDiagnostico = Console.ReadLine();
+            if (!await ValidarDiagnostico(IdDiagnostico))
+            {
+                return "Ingrese Id de diagnostico valido";
+            }
+            nuevoDiagnostico.IdDiagnostico = IdDiagnostico;
+            Console.WriteLine("Ingrese Nuevo CodMedicamento");
+            int CodMedicamento = int.Parse(Console.ReadLine());
+            if (!await ValidarCodMedicamento(CodMedicamento))
+            {
+                return "Este medicamento no esta registrado, ingrese otro CodMedicamento";
+            }
+            nuevoDiagnostico.CodMedicamento = CodMedicamento.ToString();
+            await MostrarEnfermedades();
+            Console.WriteLine("Ingrese CodEnfermedad");
+            string CodEnfermedad = Console.ReadLine();
+            if (!await ValidarCodEnfermedad(CodEnfermedad))
+            {
+                return "Esta enfermedad no esta registrada, ingrese otro Codigo de Enfermedad";
+            }
+            nuevoDiagnostico.CodEnfermedad = CodEnfermedad;
+
+            await bl.UpdateDiagnosticoAsync(nuevoDiagnostico);
+            return "Diagnostico actualizado exitosamente";
+
+        }
+        public static async Task<string> DeleteDiagnostico()
+        {
+            var bl = new DiagnosticoBL();
+            Console.WriteLine("Ingrese IdDiagnostico");
+            string IdDiagnostico = Console.ReadLine();
+            if (!await ValidarDiagnostico(IdDiagnostico))
+            {
+                return "Ingrese codigo de diagnostico valido";
+            }
+            await bl.DeleteDiagnosticoAsync(IdDiagnostico);
+            return "Diagnostico eliminado exitosamente";
+
+        }
+        public static async Task<int> MostrarDiagnosticos()
+        {
+            var diagnosticos = await GetDiagnosticos();
+            foreach (var item in diagnosticos)
+            {
+                Console.WriteLine(item);
+            }
+            return 1;
+        }
+        public static async Task<bool> ValidarDiagnostico(string IdDiagnostico)
+        {
+            var diagnosticos = await GetDiagnosticos();
+            if (validar(IdDiagnostico))
+            {
+                return true;
+            }
+            return false;
+
+            bool validar(string valor)
+            {
+                foreach (var item in diagnosticos)
+                {
+                    if (item.IdDiagnostico == valor)
                     {
                         return true;
                     }
@@ -298,130 +537,6 @@ namespace Entities
         }
 
 
-        // METODOS DE ADMINISTRACION DE HISTORIAS CLINICAS
-        public static async Task<List<HistoriaClinica>> GetHistoriasClinicas()
-        {
-            HistoriaClinicaBL bl = new HistoriaClinicaBL();
-            return await bl.GetHistoriaClinicaAsync();
-        }
-        public static async Task<HistoriaClinica> BuscarHistoriaClinica(string Dni)
-        {
-            
-            HistoriaClinicaBL bl = new HistoriaClinicaBL();
-            return await bl.BuscarHistoriaClinicaAsync(Dni);
-        }
-        public static async Task<string> UpdateHistoriaClinica()
-        {
-            Console.WriteLine("Ingrese Dni:");
-            string Dni = Console.ReadLine();
-            if (Dni.Length != 8)
-            {
-                return "Numerode digitos invalidos para Dni";
-            }
-            if (!await ValidarPaciente(Dni)) { return "Paciente no encontrado con ese Dni, asegurese de registrarlo primero"; }
-            var historia = new HistoriaClinica();
-            await MostrarEspecialidades();
-            Console.WriteLine("Ingrese CodEspecialidad: ");
-            historia.CodEspecialidad = Console.ReadLine();
-            //Console.WriteLine("Ingrese : ");
-            historia.FechaApertura = DateTime.Now;
-            Console.WriteLine("Ingrese Peso: ");
-            historia.Peso = Console.ReadLine();
-            Console.WriteLine("Ingrese Talla: ");
-            historia.Talla = Console.ReadLine();
-            //Console.WriteLine("Ingrese CodEspecialidad: ");
-            historia.CodEspecialidad = Dni;
-
-            HistoriaClinicaBL bl = new HistoriaClinicaBL();
-            await bl.UpdateHistoriaClinicaAsync(historia, Dni);
-            return "Historia actualizada con exito";
-        }
-        public static async Task<string> InsertarHistoriaClinica()
-        {
-            Console.WriteLine("Ingrese Dni:");
-            string Dni = Console.ReadLine();
-            if (Dni.Length != 8)
-            {
-                return "Numerode digitos invalidos para Dni";
-            }
-            if (!await ValidarPaciente(Dni)){  return "Paciente no encontrado con ese Dni, asegurese de registrarlo primero"; }
-            var historia = new HistoriaClinica();
-            var bl = new HistoriaClinicaBL();
-            Console.WriteLine("Paciente encontrado");
-            await MostrarEspecialidades();
-            Console.WriteLine("Ingrese CodEspecialidad");
-            historia.CodEspecialidad = Console.ReadLine();
-            //Console.WriteLine("Ingrese Fecha de apertura");
-            historia.FechaApertura = DateTime.Now;
-            Console.WriteLine("Ingrese Peso");
-            historia.Peso = Console.ReadLine();
-            Console.WriteLine("Ingrese Talla");
-            historia.Talla = Console.ReadLine();
-            //Console.WriteLine("Ingrese Dni");
-            historia.Dni = Dni;
-            await bl.InsertarHistoriaClinicaAsync(historia);
-            return "Historia creada";
-        }
-        public static async Task<string> EliminarHistoriaClinica()
-        {
-            Console.WriteLine("Ingrese Dni:");
-            string Dni = Console.ReadLine();
-            if (Dni.Length != 8)
-            {
-                return "Numero de digitos invalido";
-            }
-            if (!await ValidarPaciente(Dni)) { return "Paciente no encontrado con ese Dni, asegurese de registrarlo primero"; }
-            var bl = new HistoriaClinicaBL();
-            await bl.EliminarHistoriaClinicaAsync(Dni);
-            return "Historia clinica eliminada con exito";
-        }
-        public static async Task<int> InsertarHistoriaClinica(string Dni)
-        {
-            var historia = new HistoriaClinica();
-            var bl = new HistoriaClinicaBL();
-            await MostrarEspecialidades();
-            Console.WriteLine("Ingrese CodEspecialidad");
-            historia.CodEspecialidad = Console.ReadLine();
-            //Console.WriteLine("Ingrese Fecha de apertura");
-            historia.FechaApertura = DateTime.Now;
-            Console.WriteLine("Ingrese Peso");
-            historia.Peso = Console.ReadLine();
-            Console.WriteLine("Ingrese Talla");
-            historia.Talla = Console.ReadLine();
-            //Console.WriteLine("Ingrese Dni");
-            historia.Dni = Dni;
-            return await bl.InsertarHistoriaClinicaAsync(historia);
-        }
-        public static async Task<int> MostrarHistorias()
-        {
-            var historias = await GetHistoriasClinicas();
-            foreach (var item in historias)
-            {
-                Console.WriteLine(item);
-            }
-            return 1;
-        }
-        public static async Task<bool> ValidarHistoria(string Dni)
-        {
-            var historias = await GetHistoriasClinicas();
-            if (validar(Dni))
-                return true;
-            else return false;
-
-            bool validar(string valor)
-            {
-                foreach (var item in historias)
-                {
-                    if (item.Dni == valor)
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        }
-
-
         //METODOS DE ADMINISTRACION DE CITAS
         public static async Task<List<Cita>> GetCitas()
         {
@@ -436,7 +551,8 @@ namespace Entities
             string Dni = Console.ReadLine();
             if (Dni.Length != 8)
             {
-                return "Ingrese numero de digitos validos para Dni";
+                //return "Ingrese numero de digitos validos para Dni";
+                return null;
             }
             //if(!await ValidarCita())
             var pacientes = await GetPacientes();
@@ -449,6 +565,8 @@ namespace Entities
                 if (historia != null)
                 {
                     Console.WriteLine("Historia clinica encontrada");
+                    Console.WriteLine("-----------------------------------------------");
+                    Console.WriteLine("REGISTRO DE CITA");
                     cita.Dni = Dni;
                     cita.Nombre = paciente.Nombre;
                     cita.Apellido = paciente.Apellido;
@@ -471,7 +589,7 @@ namespace Entities
                     string fourthWord = DateTime.Now.Second.ToString();
                     cita.IdCita = zeroWord + firstWord + secondWord + thirdWord + fourthWord;
                     await bl.GenerarCitaAsync(cita);
-                    return "Cita creada exitosamente";
+                    return "Cita creada exitosamente para:"+cita.Dni;
                     //return await GenerarCodigoCita(cita);
                 }
                 else
@@ -490,6 +608,20 @@ namespace Entities
                 return "Paciente creado exitosamente";
             }
             
+        }
+        public static async Task<string> GenerarCita(Cita cita)
+        {
+            CitaBL bl = new CitaBL();
+            //Generar codigo cita
+            string zeroWord = cita.CodEspecialidad;
+            string firstWord = cita.Apellido.Substring(0, 3);
+            string secondWord = cita.Nombre.Substring(0, 3);
+            string thirdWord = cita.Dni.Substring(0, 3);
+            string fourthWord = DateTime.Now.Second.ToString();
+            cita.IdCita = zeroWord + firstWord + secondWord + thirdWord + fourthWord;
+            await bl.GenerarCitaAsync(cita);
+            return "Cita creada exitosamente para:" + cita.Dni;
+            //return await GenerarCodigoCita(cita);
         }
         public static string GenerarCodigoCita(Cita cita)
         {
@@ -515,6 +647,13 @@ namespace Entities
         {
             Console.WriteLine("Ingrese Dni de paciente: ");
             string Dni = Console.ReadLine();
+            CitaBL bl = new CitaBL();
+            return await bl.BuscarCita(Dni);
+        }
+        public static async Task<Cita> BuscarCita(string Dni)
+        {
+            //Console.WriteLine("Ingrese Dni de paciente: ");
+            //string Dni = Console.ReadLine();
             CitaBL bl = new CitaBL();
             return await bl.BuscarCita(Dni);
         }
@@ -654,7 +793,7 @@ namespace Entities
             medicamento.NombreProducto = Console.ReadLine();
             Console.WriteLine("Ingrese Presentacion de medicamento");
             medicamento.Presentacion = Console.ReadLine();
-            Console.WriteLine("Ingrese Cantidad de medicamento");
+            Console.WriteLine("Ingrese Cantidad en stock");
             medicamento.Fracciones = int.Parse(Console.ReadLine());
             await bl.InsertarMedicamentoAsync(medicamento);
             return "Medicamento nuevo creado";
@@ -708,6 +847,80 @@ namespace Entities
                 foreach (var item in medicamentos)
                 {
                     if (item.CodMedicamento == valor)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        // METODOS DE ADMINISTRACION DE ENFERMEDADES
+        public static async Task<List<Enfermedad>> GetEnfermedades()
+        {
+            var bl = new EnfermedadBL();
+            return await bl.GetEnfermedadesAsync();
+        }
+        public static async Task<string> InsertarEnfermedad()
+        {
+            var bl = new EnfermedadBL();
+            var enfermedad = new Enfermedad();
+            Console.WriteLine("Ingrese CodEnfermedad");
+            string CodEnfermedad = Console.ReadLine();
+            if (await ValidarCodEnfermedad(CodEnfermedad)) { return "Enfermedad ya registrada"; }
+            enfermedad.CodEnfermedad = CodEnfermedad;
+            Console.WriteLine("Ingrese Descripcion de enfermedad");
+            enfermedad.Descripcion = Console.ReadLine();
+
+            await bl.InsertarEnfermedadAsync(enfermedad);
+            return "Enfermedad nueva registrada";
+        }
+        public static async Task<string> ActualizarEnfermedad()
+        {
+            var bl = new EnfermedadBL();
+            var enfermedad = new Enfermedad();
+            Console.WriteLine("Ingrese CodEnfermedad");
+            string CodEnfermedad = Console.ReadLine();
+            if (!await ValidarCodEnfermedad(CodEnfermedad)) { return "Enfermedad no registrada"; }
+            enfermedad.CodEnfermedad = CodEnfermedad;
+            Console.WriteLine("Ingrese Descripcion de enfermedad");
+            enfermedad.Descripcion = Console.ReadLine();
+
+            await bl.UpdateEnfermedadAsync(enfermedad);
+            return "Enfermedad actualizada";
+        }
+        public static async Task<string> EliminarEnfermedad()
+        {
+            var bl = new EnfermedadBL();
+            Console.WriteLine("Ingrese CodEnfermedad");
+            string CodEnfermedad = Console.ReadLine();
+            if (!await ValidarCodEnfermedad(CodEnfermedad)) { return "Enfermedad no registrada en la base de datos"; }
+            await bl.DeleteEnfermedadAsync(CodEnfermedad);
+            return "Enfermedad eliminada exitosamente";
+        }
+        public static async Task<int> MostrarEnfermedades()
+        {
+            var enfermedades = await GetEnfermedades();
+            foreach (var item in enfermedades)
+            {
+                Console.WriteLine(item);
+            }
+            return 1;
+        }
+        public static async Task<bool> ValidarCodEnfermedad(string CodEnfermedad)
+        {
+            var enfermedades = await GetEnfermedades();
+            if (validar(CodEnfermedad))
+            {
+                return true;
+            }
+            return false;
+
+            bool validar(string valor)
+            {
+                foreach (var item in enfermedades)
+                {
+                    if (item.CodEnfermedad == valor)
                     {
                         return true;
                     }

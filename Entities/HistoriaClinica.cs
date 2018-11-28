@@ -6,6 +6,7 @@ namespace Entities
 {
     public class HistoriaClinica
     {
+        public string IdDiagnostico { get; set; }
         public string CodEspecialidad { get; set; }
         public DateTime FechaApertura { get; set; }
         public string Peso { get; set; }
@@ -17,8 +18,9 @@ namespace Entities
         {
 
         }
-        public HistoriaClinica(string codEspecialidad, DateTime fechaAp, string peso, string talla, string dni)
+        public HistoriaClinica(string IdDiagnostico, string codEspecialidad, DateTime fechaAp, string peso, string talla, string dni)
         {
+            this.IdDiagnostico = IdDiagnostico;
             CodEspecialidad = codEspecialidad;
             FechaApertura = fechaAp;
             Peso = peso;
@@ -28,7 +30,7 @@ namespace Entities
 
         public override string ToString()
         {
-            return string.Format("CodEspecialidad = {0}, Fecha Apertura = {1}, Peso = {2}, Talla = {3}, Dni = {4}", CodEspecialidad, FechaApertura, Peso, Talla, Dni);
+            return string.Format("IdHistoria = {0}, CodEspecialidad = {1}, Fecha Apertura = {2}, Peso = {3}, Talla = {4}, Dni = {5}", IdDiagnostico, CodEspecialidad, FechaApertura, Peso, Talla, Dni);
         }
     }
 

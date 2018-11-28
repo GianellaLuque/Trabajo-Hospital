@@ -16,10 +16,9 @@ namespace Entities
             //this.Tipo = enumTipoPaciente.Asegurado;
             //HistClinica = new HistoriaClinica();
         }
-        public Paciente(string Dni, string nombre, string apellido, string nacimiento, string tipos)
+        public Paciente(string Dni, string nombre, string apellido, string FechaNacimiento, string tipos)
         :base(Dni, nombre, apellido){
-            this.fNacimiento = nacimiento;
-            //this.Tipo = enumTipoPaciente.Asegurado;
+            this.fNacimiento = FechaNacimiento;
             Tipo = tipos;
             //HistClinica = new HistoriaClinica();
         }

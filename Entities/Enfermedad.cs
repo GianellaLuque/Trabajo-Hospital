@@ -13,6 +13,7 @@ namespace Entities
             this.CodEnfermedad = CodEnfermedad;
             this.Descripcion = Descripcion;
         }
+        public Enfermedad() { }
         public override string ToString()
         {
             return string.Format("COD_ENFERMEDAD = {0}, DESCRIPCION = {1}", CodEnfermedad, Descripcion);

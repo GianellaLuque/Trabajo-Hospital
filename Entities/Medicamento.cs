@@ -11,6 +11,7 @@ namespace Entities
         public string Presentacion { get; set; }
         public int Fracciones { get; set; }
 
+        // CONSTRUCTORES
         public Medicamento(int CodMedicamentos, string NombreProducto, string Presentacion, int Fracciones)
         {
             this.CodMedicamento = CodMedicamentos;
@@ -23,7 +24,7 @@ namespace Entities
         // METODOS
         public override string ToString()
         {
-            return string.Format("COD_MEDICAMENTO = {0}, NOMBRE_PRODUCTO = {1}, PRESENTACION = {2}, FRACCIONES= {3}", CodMedicamento, NombreProducto, Presentacion, Presentacion);
+            return string.Format("COD_MEDICAMENTO = {0}, NOMBRE_PRODUCTO = {1}, PRESENTACION = {2}, FRACCIONES= {3}", CodMedicamento, NombreProducto, Presentacion, Fracciones);
         }
     }
 }

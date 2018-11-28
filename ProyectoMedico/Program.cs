@@ -17,11 +17,6 @@ namespace ProyectoMedico
         // INICIO DE PROGRAMA
         
             // INSTANCIAMOS CLASES DE LA CAPA DE ENTIDADES
-            //HistoriaClinica historia = new HistoriaClinica();
-            //Especialidad especialidad = new Especialidad();
-            //Paciente paciente = new Paciente();
-            //Medico medico = new Medico();
-            //Cita cita = new Cita();
 
             // INSTANCIAMOS CLASES DE LA CAPA DE NEGOCIOS
             HistoriaClinicaBL Historias = new HistoriaClinicaBL();
@@ -44,6 +39,7 @@ namespace ProyectoMedico
                 4.  Administracion de especialidades.
                 5.  Administracion de personal medico. 
                 6.  Administracion de medicamentos de farmacia.
+                7.  Administracion de enfermedades.
 
                     Ingrese numero para elegir opcion:
                 ";
@@ -56,8 +52,7 @@ namespace ProyectoMedico
                 if (selMain == 4) await GestionEspecialidades();
                 if (selMain == 5) await GestionPersonalMedico();
                 if (selMain == 6) await GestionMedicamentos();
-                //if (selMain == 1) await Admision();
-                //if (selMain == 1) await Admision();
+                if (selMain == 7) await GestionEnfermedades();
             }
 
             // Admision y generacion de cita
@@ -117,8 +112,22 @@ namespace ProyectoMedico
                 Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine(mensaje);
                 Console.WriteLine("----------------------------------------------------------------");
-                await Metodos.GenerarCita();
+                string cita = await Metodos.GenerarCita();
 
+                // DIAGNOSTICO DE PACIENTE
+                Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine("ETAPA DE DIAGNOSTICO DE PACIENTE");
+                Console.WriteLine("¿Requiere interconsulta? S/N");
+                if(Console.ReadLine() == "S")
+                {
+                    //string[] citaMinima = cita.Split(":");
+                    string Dni = cita.Split(":")[1];
+                    var NuevaCita = await Metodos.BuscarCita(Dni);
+                    NuevaCita.TipoCita = "Interconsulta";
+                    await Metodos.GenerarCita(NuevaCita);
+                }
+
+                await Metodos.InsertarDiagnostico();
             }
 
             async Task GestionPacientes()
@@ -242,6 +251,28 @@ namespace ProyectoMedico
                 if (selMainMed == 3) { mensaje = await Metodos.EliminarMedicamento(); await GestionMedicamentos(); }
                 if (selMainMed == 4) { await Metodos.MostrarMedicamentos(); await GestionMedicamentos(); }
                 if (selMainMed == 5) { await MenuPrincipal(); mensaje = ""; }
+            }
+
+            // Diagnostico y receta de enfermedades
+            async Task GestionEnfermedades()
+            {
+                string MenuEnfermedades = @"SISTEMA HOSPITALARIO:
+                1.  Registrar Enfermedad.
+                2.  Actualizar Enfermedad.
+                3.  Eliminar Enfermedad.
+                4.  Mostrar Enfermedad.
+                5.  Volver a menu principal.
+                ";
+                Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine(mensaje);
+                Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine(MenuEnfermedades);
+                int selMainEnf = int.Parse(Console.ReadLine());
+                if (selMainEnf == 1) { mensaje = await Metodos.InsertarEnfermedad(); await GestionEnfermedades(); }
+                if (selMainEnf == 2) { mensaje = await Metodos.ActualizarEnfermedad(); await GestionEnfermedades(); }
+                if (selMainEnf == 3) { mensaje = await Metodos.EliminarEnfermedad(); await GestionEnfermedades(); }
+                if (selMainEnf == 4) { await Metodos.MostrarEnfermedades(); await GestionEnfermedades(); }
+                if (selMainEnf == 5) { await MenuPrincipal(); mensaje = ""; }
             }
 
         }
