@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: hospital
+-- Host: 127.0.0.1    Database: hospitaldb
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -16,27 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `especialidades`
+-- Table structure for table `historiasclinicas`
 --
 
-DROP TABLE IF EXISTS `especialidades`;
+DROP TABLE IF EXISTS `historiasclinicas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `especialidades` (
-  `CodEspecialidad` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `IdEspecialidad` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`CodEspecialidad`)
+CREATE TABLE `historiasclinicas` (
+  `IdHistoria` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `CodEspecialidad` varchar(4) COLLATE utf8_spanish2_ci NOT NULL,
+  `FechaApertura` datetime NOT NULL,
+  `Peso` varchar(4) COLLATE utf8_spanish2_ci NOT NULL,
+  `Talla` varchar(4) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `Dni` varchar(8) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `IdDiagnostico` varchar(8) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
+  PRIMARY KEY (`IdHistoria`),
+  KEY `FK_DniPaciente` (`Dni`),
+  KEY `FK_IdDiagnostico` (`IdDiagnostico`),
+  CONSTRAINT `FK_IdDiagnostico` FOREIGN KEY (`IdDiagnostico`) REFERENCES `diagnosticos` (`iddiagnostico`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `especialidades`
+-- Dumping data for table `historiasclinicas`
 --
 
-LOCK TABLES `especialidades` WRITE;
-/*!40000 ALTER TABLE `especialidades` DISABLE KEYS */;
-INSERT INTO `especialidades` VALUES ('1419','General'),('1420','Pediatria'),('1421','Generalizimo'),('1422','Ginecologia'),('1423','Traumatologia'),('1424','Oftalmologia');
-/*!40000 ALTER TABLE `especialidades` ENABLE KEYS */;
+LOCK TABLES `historiasclinicas` WRITE;
+/*!40000 ALTER TABLE `historiasclinicas` DISABLE KEYS */;
+INSERT INTO `historiasclinicas` VALUES ('1240','1211','2018-12-02 16:23:32','85','1.52','12345678',NULL),('1241','1210','2018-12-02 20:03:30','56','1.56','12341234','3000');
+/*!40000 ALTER TABLE `historiasclinicas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-27 19:05:42
+-- Dump completed on 2018-12-02 21:50:38

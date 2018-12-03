@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: hospital
+-- Host: localhost    Database: hospitaldb
 -- ------------------------------------------------------
--- Server version	8.0.11
+-- Server version	8.0.12
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,26 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `codcitas`
+-- Table structure for table `enfermedades`
 --
 
-DROP TABLE IF EXISTS `codcitas`;
+DROP TABLE IF EXISTS `enfermedades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `codcitas` (
-  `CodCitas` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `Dni` varchar(8) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`CodCitas`,`Dni`)
+CREATE TABLE `enfermedades` (
+  `CodEnfermedad` varchar(12) COLLATE utf8_spanish2_ci NOT NULL,
+  `Descripcion` varchar(225) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`CodEnfermedad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `codcitas`
+-- Dumping data for table `enfermedades`
 --
 
-LOCK TABLES `codcitas` WRITE;
-/*!40000 ALTER TABLE `codcitas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `codcitas` ENABLE KEYS */;
+LOCK TABLES `enfermedades` WRITE;
+/*!40000 ALTER TABLE `enfermedades` DISABLE KEYS */;
+/*!40000 ALTER TABLE `enfermedades` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -47,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-27 19:05:37
+-- Dump completed on 2018-11-29 22:00:08

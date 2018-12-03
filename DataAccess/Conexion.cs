@@ -7,7 +7,8 @@ namespace DataAccess
 {
     public class Conexion
     {
-        private string MysqlString = "server = 127.0.0.1; uid = root; pwd = admin; database = hospital";
+        //private string MysqlString = "server = 127.0.0.1; uid = root; pwd = admin; database = hospital";
+        private string MysqlString = "server = 127.0.0.1; uid = root; pwd = admin; database = hospitaldb";
         public MySqlConnection AbrirConexionSql()
         {
             try

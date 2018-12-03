@@ -6,13 +6,13 @@ namespace Entities
 {
     public class Medicamento
     {
-        public int CodMedicamento { get; set; }
+        public string CodMedicamento { get; set; }
         public string NombreProducto { get; set; }
         public string Presentacion { get; set; }
         public int Fracciones { get; set; }
 
         // CONSTRUCTORES
-        public Medicamento(int CodMedicamentos, string NombreProducto, string Presentacion, int Fracciones)
+        public Medicamento(string CodMedicamentos, string NombreProducto, string Presentacion, int Fracciones)
         {
             this.CodMedicamento = CodMedicamentos;
             this.NombreProducto = NombreProducto;

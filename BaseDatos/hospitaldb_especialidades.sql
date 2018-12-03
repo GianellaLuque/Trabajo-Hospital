@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: hospital
+-- Host: 127.0.0.1    Database: hospitaldb
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -16,33 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `citas`
+-- Table structure for table `especialidades`
 --
 
-DROP TABLE IF EXISTS `citas`;
+DROP TABLE IF EXISTS `especialidades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `citas` (
-  `IdCita` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
-  `Dni` varchar(8) COLLATE utf8_spanish2_ci NOT NULL,
-  `Nombre` varchar(40) COLLATE utf8_spanish2_ci NOT NULL,
-  `Apellido` varchar(40) COLLATE utf8_spanish2_ci NOT NULL,
-  `CodEspecialidad` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `CMP` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `TipoCita` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `EstadoCita` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`IdCita`)
+CREATE TABLE `especialidades` (
+  `CodEspecialidad` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `IdEspecialidad` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`CodEspecialidad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `citas`
+-- Dumping data for table `especialidades`
 --
 
-LOCK TABLES `citas` WRITE;
-/*!40000 ALTER TABLE `citas` DISABLE KEYS */;
-INSERT INTO `citas` VALUES ('1423IsaDan98740','98765432','Daniel','Isaac','1423','23456','Normal','Pendiente'),('1424gdfgfd11123','11111111','gfdgfd','gdfddf','1424','987654','Normal','Pendiente'),('IsaDan9879','98765432','Daniel','Isaac','1420','123456','Normal','Pendiente'),('sfdfdf12350','12345678','fdfs','sfds','1424','123456','Normal','Pendiente');
-/*!40000 ALTER TABLE `citas` ENABLE KEYS */;
+LOCK TABLES `especialidades` WRITE;
+/*!40000 ALTER TABLE `especialidades` DISABLE KEYS */;
+INSERT INTO `especialidades` VALUES ('1210','Pediatria'),('1211','Medicina general');
+/*!40000 ALTER TABLE `especialidades` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-27 19:05:34
+-- Dump completed on 2018-12-02 21:50:40

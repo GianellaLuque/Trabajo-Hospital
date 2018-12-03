@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: hospital
+-- Host: 127.0.0.1    Database: hospitaldb
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -23,12 +23,16 @@ DROP TABLE IF EXISTS `pacientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `pacientes` (
-  `Dni` varchar(8) COLLATE utf8_spanish2_ci NOT NULL,
-  `Nombre` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `Apellido` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `fNacimiento` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `Tipo` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  PRIMARY KEY (`Dni`)
+  `Dni` varchar(8) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `Nombre` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `Apellido` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `FechaNacimiento` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `TipoSeguro` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `EstadoPaciente` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `IdHistoria` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
+  PRIMARY KEY (`Dni`),
+  KEY `fdvdfd_idx` (`IdHistoria`),
+  CONSTRAINT `FK_pacientes_historias` FOREIGN KEY (`IdHistoria`) REFERENCES `historiasclinicas` (`idhistoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,7 +42,7 @@ CREATE TABLE `pacientes` (
 
 LOCK TABLES `pacientes` WRITE;
 /*!40000 ALTER TABLE `pacientes` DISABLE KEYS */;
-INSERT INTO `pacientes` VALUES ('11111111','gfdgfd','gdfddf','2010/10/10','Normal'),('12345678','fdfs','sfds','sdfds','sdfs'),('98765432','Daniel','Isaac','1990/12/12','Normal');
+INSERT INTO `pacientes` VALUES ('12341234','Sarapio','Santana','1900/12/12','Normal','Eliminado','1241'),('12345678','Daniele','Cabana','1990/12/12','Normal','Activo','1240');
 /*!40000 ALTER TABLE `pacientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-27 19:05:44
+-- Dump completed on 2018-12-02 21:50:41

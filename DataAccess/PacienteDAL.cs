@@ -37,13 +37,13 @@ namespace DataAccess
         public async Task<int> InsertarPacienteAsync(Paciente paciente)
         {
             MySqlConnection conexion = AbrirConexionSql();
-            string sql = "INSERT into pacientes (Dni, Nombre, Apellido, fNacimiento, Tipo) values (@Dni, @Nombre, @Apellido, @fNacimiento, @Tipo)";
+            string sql = "INSERT into pacientes (Dni, Nombre, Apellido, FechaNacimiento, TipoSeguro, EstadoPaciente) values (@Dni, @Nombre, @Apellido, @FechaNacimiento, @TipoSeguro, @EstadoPaciente)";
             int FilasAfectadas = 0;
             try
             {
                 if (conexion != null)
                 {
-                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { Dni = paciente.Dni, Nombre = paciente.Nombre, Apellido = paciente.Apellido, fNacimiento = paciente.fNacimiento, Tipo = paciente.Tipo});
+                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { Dni = paciente.Dni, Nombre = paciente.Nombre, Apellido = paciente.Apellido, FechaNacimiento = paciente.FechaNacimiento, TipoSeguro = paciente.TipoSeguro, EstadoPaciente = paciente.EstadoPaciente});
                 }
                 return FilasAfectadas;
             }
@@ -59,14 +59,14 @@ namespace DataAccess
         public async Task<int> ActualizarPacienteAsync(Paciente paciente)
         {
             MySqlConnection MiConexion = AbrirConexionSql();
-            string sql = "update pacientes set Dni = @Dni, Nombre = @Nombre, Apellido = @Apellido, fNacimiento = @fNacimiento, Tipo = @Tipo where Dni = @Dni;";
+            string sql = "update pacientes set Dni = @Dni, Nombre = @Nombre, Apellido = @Apellido, FechaNacimiento = @FechaNacimiento, TipoSeguro = @TipoSeguro, EstadoPaciente = @EstadoPaciente where Dni = @Dni;";
             //UPDATE especialidades SET CodEspecialidad = @CodEspecialidad, IdEspecialidad = @IdEspecialidad WHERE CodEspecialidad = @CodEspecialidad
             int FilasAfectadas = 0;
             try
             {
                 if (MiConexion != null)
                 {
-                    FilasAfectadas = await MiConexion.ExecuteAsync(sql, new { Dni = paciente.Dni, Nombre = paciente.Nombre, Apellido = paciente.Apellido, fNacimiento = paciente.fNacimiento, Tipo = paciente.Tipo });
+                    FilasAfectadas = await MiConexion.ExecuteAsync(sql, new { Dni = paciente.Dni, Nombre = paciente.Nombre, Apellido = paciente.Apellido, FechaNacimiento = paciente.FechaNacimiento, TipoSeguro = paciente.TipoSeguro, EstadoPaciente = paciente.EstadoPaciente  });
                 }
                 return FilasAfectadas;
             }
@@ -86,7 +86,7 @@ namespace DataAccess
             int NroFilasAfectadas = 0;
             try
             {
-                if(MiConexion != null)
+                if (MiConexion != null)
                 {
                     NroFilasAfectadas = await MiConexion.ExecuteAsync(sql);
                 }
@@ -98,7 +98,7 @@ namespace DataAccess
             }
             finally
             {
-                if(MiConexion.State == System.Data.ConnectionState.Open)
+                if (MiConexion.State == System.Data.ConnectionState.Open)
                 {
                     MiConexion.Close();
                 }
@@ -107,7 +107,7 @@ namespace DataAccess
         public async Task<int> EliminarPaciente(string dni)
         {
             MySqlConnection MiConexion = AbrirConexionSql();
-            string sql = "delete from pacientes where Dni = @dniPacienteAEliminar; ";
+            string sql = "update pacientes set EstadoPaciente = 'Eliminado' where Dni = @dniPacienteAEliminar; ";
             int NroFilasAfectadas = 0;
             try
             {

@@ -40,6 +40,7 @@ namespace BusinessLayer
         public async Task<int> InsertarHistoriaClinicaAsync(HistoriaClinica historia)
         {
             HistoriaClinicaDAL dal = new HistoriaClinicaDAL();
+            var dalp = new PacienteDAL();
             return await dal.InsertarHistoriaClinicaAsync(historia);
         }
         public async Task<int> UpdateHistoriaClinicaAsync(HistoriaClinica historia, string dni)

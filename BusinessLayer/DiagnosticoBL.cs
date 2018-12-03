@@ -14,10 +14,10 @@ namespace BusinessLayer
             ListaDiagnosticos = await dal.GetDiagnosticosAsync();
             return ListaDiagnosticos;
         }
-        public async Task<int> InsertarDiagnosticoAsync(Diagnostico diagnostico)
+        public async Task<int> InsertarDiagnosticoAsync(Diagnostico diagnostico, string dni)
         {
             var dal = new DiagnosticoDAL();
-            return await dal.InsertarDiagnosticoAsync(diagnostico);
+            return await dal.InsertarDiagnosticoAsync(diagnostico, dni);
         }
         public async Task<int> UpdateDiagnosticoAsync(Diagnostico diagnostico)
         {

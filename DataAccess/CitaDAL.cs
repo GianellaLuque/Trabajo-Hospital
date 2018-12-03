@@ -35,7 +35,6 @@ namespace DataAccess
                 }
             }
         }
-
         public async Task<int> GenerarCitaAsync(Cita cita)
         {
             MySqlConnection conexion = AbrirConexionSql();
@@ -58,7 +57,6 @@ namespace DataAccess
                 if (conexion.State == System.Data.ConnectionState.Open) { conexion.Close(); }
             }
         }
-
         public async Task<int> EliminarCitaAsync(string IdCita)
         {
             MySqlConnection conexion = AbrirConexionSql();

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: hospital
+-- Host: 127.0.0.1    Database: hospitaldb
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS `enfermedades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `enfermedades` (
-  `CodEnfermedad` varchar(12) COLLATE utf8_spanish2_ci NOT NULL,
-  `Descripcion` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `CodEnfermedad` varchar(12) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `Descripcion` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
   PRIMARY KEY (`CodEnfermedad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-27 19:05:41
+-- Dump completed on 2018-12-02 21:50:39

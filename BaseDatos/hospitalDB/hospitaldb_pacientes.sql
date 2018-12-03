@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: tecsupdb
+-- Host: localhost    Database: hospitaldb
 -- ------------------------------------------------------
--- Server version	8.0.13
+-- Server version	8.0.12
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,30 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `talumnos`
+-- Table structure for table `pacientes`
 --
 
-DROP TABLE IF EXISTS `talumnos`;
+DROP TABLE IF EXISTS `pacientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `talumnos` (
-  `IdAlumno` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(45) DEFAULT NULL,
-  `Apellido` varchar(45) DEFAULT NULL,
-  `Dni` varchar(45) DEFAULT NULL,
-  `Email` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`IdAlumno`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `pacientes` (
+  `Dni` varchar(8) COLLATE utf8_spanish2_ci NOT NULL,
+  `Nombre` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `Apellido` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `fNacimiento` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
+  `Tipo` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
+  PRIMARY KEY (`Dni`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `talumnos`
+-- Dumping data for table `pacientes`
 --
 
-LOCK TABLES `talumnos` WRITE;
-/*!40000 ALTER TABLE `talumnos` DISABLE KEYS */;
-INSERT INTO `talumnos` VALUES (12,'GIancarlo','GA,arra','44216617','giancarlo@hotmail.com'),(13,'Alexander','Gamarra','25146515','alex@hotmail.com');
-/*!40000 ALTER TABLE `talumnos` ENABLE KEYS */;
+LOCK TABLES `pacientes` WRITE;
+/*!40000 ALTER TABLE `pacientes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pacientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-22 10:56:45
+-- Dump completed on 2018-11-29 22:00:09

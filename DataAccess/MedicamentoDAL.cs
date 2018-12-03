@@ -87,7 +87,7 @@ namespace DataAccess
                     conexion.Close();
             }
         }
-        public async Task<int> EliminarMedicamentoAsync(int CodMedicamento)
+        public async Task<int> EliminarMedicamentoAsync(string CodMedicamento)
         {
             MySqlConnection conexion = AbrirConexionSql();
             string sql = "delete from medicamentos where CodMedicamento = @CodMedicamentoAEliminar;";

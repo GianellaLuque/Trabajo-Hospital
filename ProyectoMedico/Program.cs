@@ -40,6 +40,7 @@ namespace ProyectoMedico
                 5.  Administracion de personal medico. 
                 6.  Administracion de medicamentos de farmacia.
                 7.  Administracion de enfermedades.
+                8.  Administracion de diagnosticos.
 
                     Ingrese numero para elegir opcion:
                 ";
@@ -53,6 +54,7 @@ namespace ProyectoMedico
                 if (selMain == 5) await GestionPersonalMedico();
                 if (selMain == 6) await GestionMedicamentos();
                 if (selMain == 7) await GestionEnfermedades();
+                if (selMain == 8) await GestionDiagnosticos();
             }
 
             // Admision y generacion de cita
@@ -60,6 +62,7 @@ namespace ProyectoMedico
             {
                 var citas = await Metodos.GetCitas();
                 Console.Clear();
+                mensaje = "";
                 Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine("LISTA DE CITAS");
                 await Metodos.MostrarCitas();
@@ -72,7 +75,8 @@ namespace ProyectoMedico
                 string MenuAdmision = @"MENU CITAS:
                 1.  Generar cita.
                 2.  Eliminar cita.
-                3.  Volver a menu principal.
+                3.  Generar interconsulta.
+                4.  Volver a menu principal.
                 ";
                 Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine(mensaje);
@@ -82,7 +86,8 @@ namespace ProyectoMedico
 
                 if (selMainAdm == 1) { await GenerarCita(); await GestionCitas(); }
                 if (selMainAdm == 2) { await Metodos.EliminarCita(); await GestionCitas(); }
-                if (selMainAdm == 3) { await MenuPrincipal(); mensaje = ""; }
+                //if (selMainAdm == 3) { await GenerarInterconsulta(); await GestionCitas(); }
+                if (selMainAdm == 4) { await MenuPrincipal(); mensaje = ""; }
             }
 
             // Generar cita y codigo de cita
@@ -93,6 +98,7 @@ namespace ProyectoMedico
                 var citas = await Metodos.GetCitas();
                 var especialidades = await Metodos.GetEspecialidades();
                 var medicos = await Metodos.GetMedicos();
+                string cita = "";
                 Console.Clear();
                 Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine("LISTA DE PACIENTES");
@@ -110,24 +116,20 @@ namespace ProyectoMedico
                 Console.WriteLine("LISTA DE MEDICOS");
                 await Metodos.MostrarMedicos();
                 Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine("LISTA DE DIAGNOSTICOS");
+                await Metodos.MostrarDiagnosticos();
+                Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine(mensaje);
                 Console.WriteLine("----------------------------------------------------------------");
-                string cita = await Metodos.GenerarCita();
 
-                // DIAGNOSTICO DE PACIENTE
-                Console.WriteLine("----------------------------------------------------------------");
-                Console.WriteLine("ETAPA DE DIAGNOSTICO DE PACIENTE");
-                Console.WriteLine("¿Requiere interconsulta? S/N");
-                if(Console.ReadLine() == "S")
+                cita = await Metodos.GenerarCita();
+                if (cita.Split(":")[0] != "Error")
                 {
-                    //string[] citaMinima = cita.Split(":");
-                    string Dni = cita.Split(":")[1];
-                    var NuevaCita = await Metodos.BuscarCita(Dni);
-                    NuevaCita.TipoCita = "Interconsulta";
-                    await Metodos.GenerarCita(NuevaCita);
+                    mensaje = cita;
+                    //string Dni = cita.Split(":")[1];
+                    await GestionDiagnosticos();
                 }
-
-                await Metodos.InsertarDiagnostico();
+                mensaje = cita;
             }
 
             async Task GestionPacientes()
@@ -141,8 +143,7 @@ namespace ProyectoMedico
                 1.  Crear paciente.
                 2.  Actualizar paciente.
                 3.  Eliminar paciente.
-                4.  Eliminar pacientes.
-                5.  Volver a menu principal.
+                4.  Volver a menu principal.
                 ";
                 Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine(mensaje);
@@ -152,25 +153,26 @@ namespace ProyectoMedico
                 if (selMainPac == 1) { mensaje = await Metodos.InsertarPaciente(); await GestionPacientes(); }
                 if (selMainPac == 2) { mensaje = await Metodos.ActualizarPaciente(); await GestionPacientes(); }
                 if (selMainPac == 3) { mensaje = await Metodos.EliminarPaciente(); await GestionPacientes(); }
-                if (selMainPac == 4) { mensaje = await Metodos.EliminarPacientesTodos(); await GestionPacientes(); }
-                if (selMainPac == 5) { await MenuPrincipal(); mensaje = ""; }
+                //if (selMainPac == 4) { mensaje = await Metodos.EliminarPacientesTodos(); await GestionPacientes(); }
+                if (selMainPac == 4) { await MenuPrincipal(); mensaje = ""; }
             }
 
             //Gestion Historias Clinicas
             async Task GestionHistoriasClinicas()
             {
-                var historias = await Metodos.GetPacientes();
                 Console.Clear();
                 Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine("LISTA DE HISTORIAS CLINICAS");
                 await Metodos.MostrarHistorias();
+                Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine("LISTA DE PACIENTES");
+                await Metodos.MostrarPacientes();
                 string MenuEspecialidades = @"MENU HISTORIAS CLINICAS:
                 1.  Crear historia clinica.
                 2.  Actualizar historia clinica.
                 3.  Eliminar historia clinica.
                 4.  Volver a menu principal
                 ";
-                Console.WriteLine(mensaje);
                 Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine(mensaje);
                 Console.WriteLine("----------------------------------------------------------------");
@@ -234,7 +236,9 @@ namespace ProyectoMedico
             // Diagnostico y receta de medicamentos
             async Task GestionMedicamentos()
             {
-                string MenuMedicamentos = @"SISTEMA HOSPITALARIO:
+                //Console.Clear();
+                mensaje = "";
+                string MenuMedicamentos = @"MENU MEDICAMENTOS:
                 1.  Insertar Medicamento.
                 2.  Actualizar Medicamento.
                 3.  Eliminar Medicamento.
@@ -256,6 +260,7 @@ namespace ProyectoMedico
             // Diagnostico y receta de enfermedades
             async Task GestionEnfermedades()
             {
+                Console.Clear();
                 string MenuEnfermedades = @"SISTEMA HOSPITALARIO:
                 1.  Registrar Enfermedad.
                 2.  Actualizar Enfermedad.
@@ -273,6 +278,35 @@ namespace ProyectoMedico
                 if (selMainEnf == 3) { mensaje = await Metodos.EliminarEnfermedad(); await GestionEnfermedades(); }
                 if (selMainEnf == 4) { await Metodos.MostrarEnfermedades(); await GestionEnfermedades(); }
                 if (selMainEnf == 5) { await MenuPrincipal(); mensaje = ""; }
+            }
+
+            // Gestion de diagnosticos
+            async Task GestionDiagnosticos()
+            {
+                Console.Clear();
+                Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine("LISTA DE DIAGNOSTICOS");
+                await Metodos.MostrarDiagnosticos();
+                Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine("LISTA DE CITAS");
+                await Metodos.MostrarCitas();
+                string MenuDiagnosticos = @"MENU DIAGNOSTICOS:
+                1.  Registrar Diagnostico.
+                2.  Actualizar Diagnostico.
+                3.  Eliminar Diagnostico.
+                4.  Mostrar Diagnosticos.
+                5.  Volver a menu principal.
+                ";
+                Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine(mensaje);
+                Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine(MenuDiagnosticos);
+                int selMainDiag = int.Parse(Console.ReadLine());
+                if (selMainDiag == 1) { mensaje = await Metodos.InsertarDiagnostico(); await GestionDiagnosticos(); }
+                if (selMainDiag == 2) { mensaje = await Metodos.UpdateDiagnostico(); await GestionDiagnosticos(); }
+                if (selMainDiag == 3) { mensaje = await Metodos.DeleteDiagnostico(); await GestionDiagnosticos(); }
+                if (selMainDiag == 4) { mensaje = await Metodos.MostrarDiagnosticos(); await GestionDiagnosticos(); }
+                if (selMainDiag == 5) { await MenuPrincipal(); mensaje = ""; }
             }
 
         }

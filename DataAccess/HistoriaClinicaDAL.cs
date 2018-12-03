@@ -39,13 +39,15 @@ namespace DataAccess
         public async Task<int> InsertarHistoriaClinicaAsync(HistoriaClinica historia)
         {
             MySqlConnection conexion = AbrirConexionSql();
-            string sql = "INSERT into historiasclinicas (CodEspecialidad, FechaApertura, Peso, Talla, Dni) values (@CodEspecialidad, @FechaApertura, @Peso, @Talla, @Dni)";
+            string sql = "INSERT into historiasclinicas (IdHistoria, CodEspecialidad, FechaApertura, Peso, Talla, Dni) values (@IdHistoria, @CodEspecialidad, @FechaApertura, @Peso, @Talla, @Dni)";
+            string sqlp = "update pacientes set IdHistoria = @IdHistoria where Dni = @Dni;";
             int FilasAfectadas = 0;
             try
             {
                 if (conexion != null)
                 {
-                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { CodEspecialidad = historia.CodEspecialidad, FechaApertura = historia.FechaApertura, Peso = historia.Peso, Talla = historia.Talla, Dni = historia.Dni});
+                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { IdHistoria = historia.IdHistoria, CodEspecialidad = historia.CodEspecialidad, FechaApertura = historia.FechaApertura, Peso = historia.Peso, Talla = historia.Talla, Dni = historia.Dni});
+                    FilasAfectadas = await conexion.ExecuteAsync(sqlp, new { IdHistoria = historia.IdHistoria, Dni = historia.Dni });
                 }
                 return FilasAfectadas;
             }
@@ -61,8 +63,10 @@ namespace DataAccess
         public async Task<int> UpdateHistoriaClinicaAsync(HistoriaClinica historia, string dni)
         {
             MySqlConnection conexion = AbrirConexionSql();
-            string sql = "UPDATE historiasclinicas SET  'CodEspecialidad' = @CodEspecialidad, 'FechaApertura' = @FechaApertura, 'Peso' = @Peso, 'Talla' = @Talla, Dni = @Dni WHERE Dni = @Dni";
+            //string sql = "UPDATE historiasclinicas SET 'CodEspecialidad' = @CodEspecialidad, 'Peso' = @Peso, 'Talla' = @Talla WHERE Dni = @Dni";
             //string sql = "UPDATE talumnos SET  Nombre = @Nombre, Apellido = @Apellido, Dni = @Dni, Email = @Email WHERE idAlumno = @idAlumno";
+            string sql = "UPDATE historiasclinicas SET CodEspecialidad = @CodEspecialidad, Peso = @Peso, Talla = @Talla WHERE Dni = @Dni";
+
             int NroFilasAfectadas = 0;
             try
             {
@@ -71,11 +75,9 @@ namespace DataAccess
                     NroFilasAfectadas = await conexion.ExecuteAsync(sql, new
                     {
                         CodEspecialidad = historia.CodEspecialidad,
-                        FechaApertura = historia.FechaApertura,
                         Peso = historia.Peso,
                         Talla = historia.Talla,
-                        //Dni = historia.Dni
-                        Dni = dni
+                        Dni = historia.Dni
                     });
                 };
                 return NroFilasAfectadas;
@@ -93,7 +95,8 @@ namespace DataAccess
         public async Task<int> EliminarHistoriaClinicaAsync(string dni)
         {
             MySqlConnection MiConexion = AbrirConexionSql();
-            string sql = "delete from historiasclinicas where Dni = @dniPacienteAEliminar; ";
+            string sql =    @"SET FOREIGN_KEY_CHECKS=0;
+                            delete from historiasclinicas where Dni = @dniPacienteAEliminar; ";
             int NroFilasAfectadas = 0;
             try
             {

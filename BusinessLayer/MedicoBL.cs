@@ -25,7 +25,6 @@ namespace BusinessLayer
             MedicoDAL dal = new MedicoDAL();
             return await dal.ActualizarMedicoAsync(medico);
         }
-
         public async Task<int> EliminarMedicoAsync(string cmp)
         {
             var dal = new MedicoDAL();

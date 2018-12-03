@@ -8,7 +8,6 @@ namespace BusinessLayer
     public class PacienteBL
     {
         public static List<Paciente> ListaPacientes;
-
         public async Task<List<Paciente>> GetPacientesAsync()
         {
             PacienteDAL dal = new PacienteDAL();

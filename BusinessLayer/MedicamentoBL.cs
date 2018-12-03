@@ -17,7 +17,7 @@ namespace BusinessLayer
             return ListaMedicamentos;
         }
 
-        public async Task<Medicamento> BuscarMedicamentoAsync(int CodMedicamento)
+        public async Task<Medicamento> BuscarMedicamentoAsync(string CodMedicamento)
         {
             MedicamentoDAL dal = new MedicamentoDAL();
             Medicamento medicamento = new Medicamento();
@@ -49,7 +49,7 @@ namespace BusinessLayer
             return await dal.UpdateMedicamentoAsync(medicamento);
             //return alumno;
         }
-        public async Task<int> EliminarMedicamentoAsync(int CodMedicamento)
+        public async Task<int> EliminarMedicamentoAsync(string CodMedicamento)
         {
             MedicamentoDAL dal = new MedicamentoDAL();
             return await dal.EliminarMedicamentoAsync(CodMedicamento);

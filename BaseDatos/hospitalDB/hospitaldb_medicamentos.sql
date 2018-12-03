@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: tecsupdb
+-- Host: localhost    Database: hospitaldb
 -- ------------------------------------------------------
--- Server version	8.0.13
+-- Server version	8.0.12
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,29 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tusuarios`
+-- Table structure for table `medicamentos`
 --
 
-DROP TABLE IF EXISTS `tusuarios`;
+DROP TABLE IF EXISTS `medicamentos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `tusuarios` (
-  `IdUsuario` varchar(20) NOT NULL,
-  `Password` varchar(20) DEFAULT NULL,
-  `Nombres` varchar(100) DEFAULT NULL,
-  `Email` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`IdUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `medicamentos` (
+  `CodMedicamento` int(11) NOT NULL,
+  `NombreProducto` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `Presentacion` varchar(225) COLLATE utf8_spanish2_ci NOT NULL,
+  `Fracciones` int(11) NOT NULL,
+  PRIMARY KEY (`CodMedicamento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tusuarios`
+-- Dumping data for table `medicamentos`
 --
 
-LOCK TABLES `tusuarios` WRITE;
-/*!40000 ALTER TABLE `tusuarios` DISABLE KEYS */;
-INSERT INTO `tusuarios` VALUES ('admin','123456','Admin','email@hotmail.com');
-/*!40000 ALTER TABLE `tusuarios` ENABLE KEYS */;
+LOCK TABLES `medicamentos` WRITE;
+/*!40000 ALTER TABLE `medicamentos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `medicamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-22 10:56:46
+-- Dump completed on 2018-11-29 22:00:08

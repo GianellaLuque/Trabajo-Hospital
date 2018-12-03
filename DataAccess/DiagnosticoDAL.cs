@@ -35,16 +35,17 @@ namespace DataAccess
                 }
             }
         }
-        public async Task<int> InsertarDiagnosticoAsync(Diagnostico diagnostico)
+        public async Task<int> InsertarDiagnosticoAsync(Diagnostico diagnostico, string dni)
         {
             MySqlConnection conexion = AbrirConexionSql();
-            string sql = "INSERT into diagnosticos (IdDiagnostico, CodEnfermedad, CodMedicamento) values (@IdDiagnostico, @CodEnfermedad, @CodMedicamento)";
+            string sql = @" INSERT into diagnosticos (IdDiagnostico, CMP, CodEnfermedad, CodMedicamento) values (@IdDiagnostico, @CMP, @CodEnfermedad, @CodMedicamento);
+                            update historiasclinicas set IdDiagnostico = @IdDiagnostico where Dni = @Dni;";
             int FilasAfectadas = 0;
             try
             {
                 if (conexion != null)
                 {
-                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { IdDiagnostico = diagnostico.IdDiagnostico, IdEnfermedad = diagnostico.CodEnfermedad, IdMedicamento = diagnostico.CodMedicamento });
+                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { IdDiagnostico = diagnostico.IdDiagnostico, CMP = diagnostico.CMP, CodEnfermedad = diagnostico.CodEnfermedad, CodMedicamento = diagnostico.CodMedicamento, Dni = dni });
                 }
                 return FilasAfectadas;
             }

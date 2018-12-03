@@ -34,17 +34,16 @@ namespace DataAccess
                 }
             }
         }
-
         public async Task<int> InsertarMedicoAsync(Medico medico)
         {
             MySqlConnection conexion = AbrirConexionSql();
-            string sql = "INSERT into medicos (CMP, Especialidad, Dni, Nombre, Apellido) values (@CMP, @Especialidad, @Dni, @Nombre, @Apellido)";
+            string sql = "INSERT into medicos (CMP, CodEspecialidad, Dni, Nombre, Apellido) values (@CMP, @CodEspecialidad, @Dni, @Nombre, @Apellido)";
             int FilasAfectadas = 0;
             try
             {
                 if (conexion != null)
                 {
-                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { CMP = medico.CMP, Especialidad = medico.Especialidad, Dni = medico.Dni, Nombre = medico.Nombre, Apellido = medico.Apellido });
+                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { CMP = medico.CMP, CodEspecialidad = medico.CodEspecialidad, Dni = medico.Dni, Nombre = medico.Nombre, Apellido = medico.Apellido });
                 }
                 return FilasAfectadas;
             }
@@ -57,17 +56,17 @@ namespace DataAccess
                 if (conexion.State == System.Data.ConnectionState.Open) { conexion.Close(); }
             }
         }
-
         public async Task<int> ActualizarMedicoAsync(Medico medico)
         {
             MySqlConnection conexion = AbrirConexionSql();
-            string sql = "UPDATE medicos SET (CMP, Especialidad, Dni, Nombre, Apellido) values (@CMP, @Especialidad, @Dni, @Nombre, @Apellido) WHERE CMP = @CMP;";
+            string sql = "UPDATE medicos SET CMP = @CMP, CodEspecialidad = @CodEspecialidad, Dni = @Dni, Nombre = @Nombre, Apellido = @Apellido WHERE CMP = @CMP";
+            //string sql = "UPDATE medicos SET (CMP, CodEspecialidad, Dni, Nombre, Apellido) values (@CMP, @CodEspecialidad, @Dni, @Nombre, @Apellido) WHERE CMP = @CMP";
             int FilasAfectadas = 0;
             try
             {
                 if (conexion != null)
                 {
-                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { CMP = medico.CMP, Especialidad = medico.Especialidad, Dni = medico.Dni, Nombre = medico.Nombre, Apellido = medico.Apellido });
+                    FilasAfectadas = await conexion.ExecuteAsync(sql, new { CMP = medico.CMP, CodEspecialidad = medico.CodEspecialidad, Dni = medico.Dni, Nombre = medico.Nombre, Apellido = medico.Apellido });
                 }
                 return FilasAfectadas;
             }
@@ -80,7 +79,6 @@ namespace DataAccess
                 if (conexion.State == System.Data.ConnectionState.Open) { conexion.Close(); }
             }
         }
-
         public async Task<int> EliminarMedicoAsync(string CMPAEliminar)
         {
             MySqlConnection conexion = AbrirConexionSql();
